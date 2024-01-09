@@ -1,4 +1,4 @@
-<div class="w-full sm:max-w-full sm:flex">
+<div class="w-full sm:flex">
   <div
     class="h-fit w-full sm:h-auto sm:w-56 flex-none bg-cover rounded-t md:rounded-t-none md:rounded-l text-center overflow-hidden"
     title="Woman holding a mug">
@@ -6,16 +6,17 @@
   </div>
 
   <div
-    class="border-r border-b border-l border-gray-400 md:border-l-0 lg:border-t bg-white rounded-b md:rounded-b-none md:rounded-r p-4 flex flex-col justify-between leading-normal">
-    <div class="mb-8">
+    class="w-full md:flex-row md:justify-around border-r border-b border-l border-gray-400 md:border-l-0 lg:border-t bg-white rounded-b md:rounded-b-none md:rounded-r p-4 flex flex-col justify-between leading-normal">
+    <div class="mb-8 sm:max-w-sm lg:max-w-xl">
       <div class="text-gray-900 font-bold text-xl mb-2">{{ event.name }}</div>
-      <p class="text-gray-700 text-base hidden sm:block">{{ event.decsription }}</p>
+      <p class="text-gray-700 text-base hidden sm:block">{{ (event.description.length > 200) ? ( event.description | slice:0:200) + '...': event.description}}</p>
     </div>
     <div class="flex items-center">
       <img class="w-10 h-10 rounded-full mr-4" src="/assets/img/daniel.jpg" alt="Avatar of Jonathan Reinink">
       <div class="text-sm">
+        <p class="text-gray-900 leading-none font-bold mb-2"> Organized by : </p>
         <p class="text-gray-900 leading-none" *ngFor="let organizer of event.organizers"> {{ organizer.name }} </p>
-        <p class="text-gray-600 ">{{ event.startDateTime | date }}</p>
+        <p class="text-gray-600 mt-2">{{ event.startDateTime | date }}</p>
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@ import { User } from "./user.model";
 export class Event {
     id: number;
     name: string;
-    decsription: string;
+    description: string;
     creationDate: Date;
     startDateTime: Date;
     endDateTime: Date;
@@ -18,7 +18,7 @@ export class Event {
     constructor(id: number, name: string, description: string, creationDate: Date, startDateTime: Date, endDateTime: Date, location: string, image: string, participants: User[], organizers: Company[], tags: Tag[]) {
         this.id = id;
         this.name = name;
-        this.decsription = description;
+        this.description = description;
         this.creationDate = creationDate;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
