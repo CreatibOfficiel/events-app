@@ -1,0 +1,43 @@
+<div class="bg-grey-200 flex items-center justify-center h-screen grow">
+
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <div class="flex items-center justify-center mb-6">
+            <!-- Ajouter le logo de votre application ici -->
+            <img src="/assets/img/logo.png" alt="Logo" class="w-48 h-48">
+        </div>
+
+        <form>
+            <div class="mb-4">
+                <label for="username" class="text-sm text-gray-600">Email</label>
+                <input type="text" id="username" name="username" [formControl]="emailFormControl"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="emailFormControl.invalid && emailFormControl.touched">
+                  Please enter a valid email.
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="text-sm text-gray-600">Mot de passe</label>
+                <input type="password" id="password" name="password" [formControl]="passwordFormControl"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="passwordFormControl.invalid && passwordFormControl.touched">
+                  Password is required.
+                </div>
+            </div>
+
+            <button type="submit" (click)="login()"
+                class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+                Connexion
+            </button>
+        </form>
+
+        <div class="mt-4 text-center text-sm text-gray-600">
+            <a href="#" class="underline">Mot de passe oublié?</a>
+        </div>
+
+        <div class="mt-4 text-center text-sm text-gray-600">
+            Vous n'avez pas de compte? <a href="register" class="underline">Inscrivez-vous ici</a>
+        </div>
+    </div>
+
+</div>
