@@ -5,6 +5,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SearchComponent } from './pages/search/search.component';
 import {LoginComponent} from "./pages/auth/login/login.component";
 import {RegisterComponent} from "./pages/auth/register/register.component";
+import { EventDetailComponent } from './pages/event-detail/event-detail.component';
 
 export const routes: Routes = [
     { path: '', component: FeedComponent },
@@ -12,5 +13,6 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'search', component: SearchComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent }
+    { path: 'register', component: RegisterComponent },
+    { path: 'event/:id', component: EventDetailComponent }
 ];
