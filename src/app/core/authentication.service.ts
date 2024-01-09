@@ -33,6 +33,24 @@ export class AuthenticationService {
       );
   }
 
+  register(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/api/users`, data).pipe(
+      tap((res: any) => {
+        if (res.code() === 201) {
+          return res;
+        }
+      }),
+      catchError(err => {
+          if (err.status === 422) {
+              return err.error.violations;
+          } else {
+              console.log(err);
+          }
+        return of(false);
+      })
+    );
+  }
+
   logout() {
     localStorage.removeItem('token');
   }

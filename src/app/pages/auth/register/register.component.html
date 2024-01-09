@@ -9,40 +9,60 @@
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="mb-4">
                 <label for="lastname" class="text-sm text-gray-600">Nom</label>
+                <div *ngIf="findtruc('lastname')">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Attention !</strong> {{findtruc('email').message}}
+                    </div>
+                </div>
                 <input type="text" id="lastname" formControlName="lastname"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
             </div>
 
             <div class="mb-4">
                 <label for="firstname" class="text-sm text-gray-600">Prénom</label>
+                <div *ngIf="findtruc('fistname')">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Attention !</strong> {{findtruc('email').message}}
+                    </div>
+                </div>
                 <input type="text" id="firstname" formControlName="firstname"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
             </div>
 
             <div class="mb-4">
                 <label for="email" class="text-sm text-gray-600">Adresse e-mail</label>
+                <div *ngIf="findtruc('email')">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Attention !</strong> {{findtruc('email').message}}
+                    </div>
+                </div>
                 <input type="email" id="email" formControlName="email"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
             </div>
 
             <div class="mb-4">
                 <label for="password" class="text-sm text-gray-600">Mot de passe</label>
-                <input type="password" id="password" formControlName="password"
+                <div *ngIf="findtruc('plainPassword')">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Attention !</strong> {{findtruc('plainPassword').message}}
+                    </div>
+                </div>
+                <input type="password" id="password" formControlName="plainPassword"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
             </div>
 
             <div class="mb-4">
                 <label for="confirm_password" class="text-sm text-gray-600">Confirmez le mot de passe</label>
+                <div *ngIf="findtruc('plainPassword')">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Attention !</strong> {{findtruc('plainPassword').message}}
+                    </div>
+                </div>
                 <input type="password" id="confirm_password" formControlName="confirm_password"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
             </div>
 
-            <div
-                *ngIf="registerForm.hasError('passwordsDoNotMatch') && (registerForm.get('confirm_password')?.dirty || registerForm.get('password')?.dirty)">
-                Les mots de passe ne correspondent pas.
-            </div>
-
-            <button type="submit"
+            <button (click)="register()"
                 class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
                 S'inscrire
             </button>
