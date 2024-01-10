@@ -6,6 +6,9 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { EventService } from '../../core/event.service';
+import { UserService } from '../../core/user.service';
+import { User } from '../../models/user.model';
 @Component({
     selector: 'app-calendar',
     standalone: true,
@@ -14,38 +17,76 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
     imports: [CardComponent, CommonModule, FontAwesomeModule]
 })
 export class CalendarComponent {
-  company: Company = new Company(1, 'test', 'test', [], 'test', new Date(), 'test', true);
-  company2: Company = new Company(2, 'test2', 'test2', [], 'test2', new Date(), 'test2', true);
-
-  event: Event = new Event(1, 'coucou', `Lorem ipsum dolor sit amet. In commodi voluptatum sed itaque quia sit voluptates quia. Et reprehenderit temporibus aut dolores magni et tempore accusamus et laboriosam natus.
-
-  Et voluptatem iusto ut maxime sapiente et excepturi reiciendis est quibusdam voluptatum. Non Quis minus aut neque repellendus qui quidem dolorum aut consequatur enim in itaque laudantium 33 similique consequatur. Eum error veritatis ad doloremque deleniti sit illum quibusdam ut soluta minus ut placeat perferendis aut mollitia sint? Eum repudiandae provident qui tenetur Quis ut quia voluptas sed cupiditate itaque est magni voluptatem est distinctio impedit qui voluptatibus impedit.
   
-  Ut voluptatibus officia quo repellat atque est dolorem iste aut aliquam fugit qui totam enim eum blanditiis dignissimos! Ut accusamus earum non aliquid fugiat et galisum voluptatem 33 iusto aspernatur. Ut cupiditate excepturi et culpa dolores in doloremque quas qui deleniti illo.`, new Date(), new Date(), new Date(), 'Grenoble', '', [], [this.company, this.company2], []);
-  event2: Event = new Event(1, 'coucou2', 'test2', new Date(), new Date(), new Date(), 'Grenoble', '', [], [this.company, this.company2], []);
   events: Event[] = [];
 
   currentDay: Date = new Date();
-  month = this.currentDay.toLocaleString('default', { month: 'long' });
+  month: number = this.currentDay.getMonth();
+  monthString = this.currentDay.toLocaleString('default', { month: 'long' });
   year = this.currentDay.getFullYear();
   faAngleLeft = faAngleLeft;
   faAngleRight = faAngleRight;
 
-  constructor() {
-    this.events.push(this.event);
-    this.events.push(this.event2);
+  constructor(
+    private eventService: EventService,
+    private userService: UserService
+  ) {}
+
+  ngOnInit(): void {
+
+    if (this.isAuthenticated()) {
+      this.getUserId().then((userId) => {
+        this.getUserEventsForMonth(userId, this.month).then((events) => {
+          console.log(events);
+          this.events = events;
+        });
+      });
+    }
+  }
+
+  async getUserEventsForMonth(userId: number, month: number): Promise<Event[]> {
+    let events = await this.eventService.getUserEventsForMonth(userId, month);
+
+    if (events !== null) {
+      return events;
+    }
+
+    return [];
   }
 
   nextMonth() {
     this.currentDay.setMonth(this.currentDay.getMonth() + 1);
-    this.month = this.currentDay.toLocaleString('default', { month: 'long' });
+    this.month = this.currentDay.getMonth();
+    this.monthString = this.currentDay.toLocaleString('default', { month: 'long' });
     this.year = this.currentDay.getFullYear();
+
+    this.getUserEventsForMonth(1, this.month).then((events) => {
+      console.log(events);
+      this.events = events;
+    });
   }
 
   previousMonth() {
     this.currentDay.setMonth(this.currentDay.getMonth() - 1);
-    this.month = this.currentDay.toLocaleString('default', { month: 'long' });
+    this.month = this.currentDay.getMonth();
+    this.monthString = this.currentDay.toLocaleString('default', { month: 'long' });
     this.year = this.currentDay.getFullYear();
+
+    this.getUserEventsForMonth(1, this.month).then((events) => {
+      console.log(events);
+      this.events = events;
+    });
+  }
+
+  isAuthenticated(): boolean {
+    return this.userService.isAuthenticated();
+  }
+
+  async getUserId(): Promise<number> {
+    const currentUser: User = await this.userService.getUser();
+    console.log("Current user:");
+    console.log(currentUser);
+    return currentUser.id;
   }
 
 }
