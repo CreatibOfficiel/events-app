@@ -22,7 +22,6 @@ export class FeedComponent {
   constructor() { 
     this.events.push(this.event);
     this.events.push(this.event2);
-    console.log(this.events);
   }
 
 }
