@@ -1,27 +1,46 @@
-# EventsApp
+# Event-app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0-rc.0.
+Bienvenue dans Event-app !
 
-## Development server
+Ce dépôt contient le code source (le front) d'une application de gestion d'événements centralisée construite avec Angular 17.1.0-rc.0 pour le frontend et Symfony 6.4 pour le **backend**.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Liens du Projet
 
-## Code scaffolding
+- [Boardmix](https://boardmix.com/app/share/CAE.CLybCyABKhB4g7FPdNX3JAjTg5DubiooMAVAAQ/1XLLjX)
+- [Répertoire GitHub](https://github.com/BDanielo/Projet-Stack)
+- [Diagramme de la Base de Données](https://dbdiagram.io/d/Diagramme-bd-challenge-stack-65689c263be14957870faed9)
+- [Tableau Trello](https://trello.com/invite/b/nbRqCxvU/ATTI9528480c65341b056eb02d1b143cffe672F80830/challenge-slack)
+- [Figma](https://www.figma.com/file/5N6quj4Cok3OQEAgwdZ0pf/PartyEvent?type=design&node-id=0-1&mode=design)
+- [Git back](https://github.com/BDanielo/Projet-Stack-Back)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Vue d'ensemble
 
-## Build
+Event-app vise à centraliser la gestion des événements pour diverses organisations telles que les BDE (Bureau des Étudiants), les bars, et plus encore.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Installation
 
-## Running unit tests
+1. Clonez le dépôt GitHub :
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+git clone git@github.com:CreatibOfficiel/events-app.git
+```
 
-## Running end-to-end tests
+2. Accédez au répertoire du projet :
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+cd events-app
+```
 
-## Further help
+3. Installez les dépendances :
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm install
+```
+
+4. Lancez le serveur :
+
+```bash
+ng serve --open
+```
+
+   
