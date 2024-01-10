@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { Event } from '../../models/event.model';
-import { EventService } from '../../services/event.service';
+import { EventService } from '../../core/event.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -13,6 +13,7 @@ import { EventService } from '../../services/event.service';
   styleUrl: './event-detail.component.css'
 })
 export class EventDetailComponent {
+  selectedEvent: Event|null = null;
   
   constructor(private route: ActivatedRoute, private eventService: EventService) { }
 
@@ -21,11 +22,25 @@ export class EventDetailComponent {
       // Access the 'id' parameter from the route
       const eventId = params['id'];
 
-      let event = this.eventService.getEventById(eventId);
-
-      console.log(event);
+      this.getSelectedEvent(eventId).then((event) => {
+        this.selectedEvent = event;
+        console.log(this.selectedEvent);
+      });
 
     });
+  }
+
+  async getSelectedEvent(id: number): Promise<Event|null> {
+    
+    let event = await this.eventService.getEventById(id);
+
+    console.log(event);
+
+    if (event !== null) {
+      return event;
+    }
+
+    return null;
   }
 
 }

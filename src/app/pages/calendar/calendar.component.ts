@@ -34,7 +34,6 @@ export class CalendarComponent {
   constructor() {
     this.events.push(this.event);
     this.events.push(this.event2);
-    console.log(this.events);
   }
 
   nextMonth() {
