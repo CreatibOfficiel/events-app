@@ -6,16 +6,16 @@
     <img class="w-9/12 mb-5" src="https://via.placeholder.com/1920x1080.png?text=No+Image+Found" alt="No Image Found">
     
     <div class="flex flex-col items-center w-9/12 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Event name</h5>
-        <p class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Event date and location</p>
-        <p class="font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet. Hic aperiam iusto ut distinctio numquam vel optio voluptatem ut consequuntur porro aut quam repellendus eos incidunt quod? Non sapiente reiciendis et enim consequuntur et esse perspiciatis. Est libero sint vel laboriosam quam non quidem ratione et excepturi obcaecati? At nobis omnis id dolor rerum vel sint nulla est consequuntur velit. Qui internos tempore qui omnis delectus et consequatur quis qui accusantium molestiae qui tenetur illum vel voluptatum quaerat. Et quia Quis id beatae dolor nam tenetur quisquam et temporibus expedita ut temporibus maiores. Cum saepe rerum ea magnam cumque hic fuga mollitia ex dolorem veniam aut nostrum iure ex fugiat possimus sit galisum assumenda. Id quia labore aut dolorem adipisci eos itaque quam qui alias minus. Ut suscipit odit vel aliquid expedita sit ullam adipisci At voluptas explicabo vel fuga nesciunt sit saepe doloribus. Aut rerum temporibus ad excepturi doloremque non soluta excepturi et aperiam quam 33 veritatis internos ex quia doloribus sit dolorem perspiciatis. </p>
-        <a href="#" class="flex flex-row justify-end mt-10 w-full">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ selectedEvent.name }}</h5>
+        <p class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Le {{ selectedEvent.startDateTime | date }} à {{ selectedEvent.location }} </p>
+        <p class="font-normal text-gray-700 dark:text-gray-400"> {{ selectedEvent.description }} </p>
+        <div class="flex flex-row justify-end mt-10 w-full">
             <p class="text-gray-700 dark:text-gray-400">Organisé par : </p>
-            <div class="flex flex-col items-center">
+            <a href="#" *ngFor="let organizer of selectedEvent.organizers" class="flex flex-col items-center">
                 <img class="w-10 h-10 rounded-full mr-4" src="/assets/img/daniel.jpg" alt="Association profile picture">
-                <p class="text-gray-900 dark:text-gray-400 leading-none font-bold mb-2"> Association name </p>
-            </div>
-        </a>
+                <p class="text-gray-900 dark:text-gray-400 leading-none font-bold mb-2"> {{ organizer.name }} </p>
+            </a>
+        </div>
     </div>
     
 </div>
