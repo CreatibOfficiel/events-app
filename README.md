@@ -2,7 +2,7 @@
 
 Bienvenue dans Event-app !
 
-Ce dépôt contient le code source (le front) d'une application de gestion d'événements centralisée construite avec Angular 17.1.0-rc.0 pour le **frontend** et Symfony 6.4 pour le backend.
+Ce dépôt contient le code source (le front) d'une application de gestion d'événements centralisée construite avec Angular 17.1.0-rc.0 pour le frontend et Symfony 6.4 pour le **backend**.
 
 ## Liens du Projet
 
