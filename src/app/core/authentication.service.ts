@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of, tap } from 'rxjs';
+import {MainService} from "./main.service";
 
 @Injectable({
   providedIn: 'root',
 
 })
-export class AuthenticationService {
-  private apiUrl = 'https://localhost:8000';
-
-  constructor(private http: HttpClient) { }
+export class AuthenticationService extends MainService{
+  constructor(private http: HttpClient) {
+    super(http);
+  }
 
 
   login(email: string, password: string): Observable<boolean | { token: string }> {
@@ -34,7 +35,7 @@ export class AuthenticationService {
   }
 
   register(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/users`, data).pipe(
+    return this.http.post(`${this.fullApiUrl}/users`, data).pipe(
       tap((res: any) => {
         if (res.code() === 201) {
           return res;

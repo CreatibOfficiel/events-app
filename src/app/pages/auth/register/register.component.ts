@@ -66,9 +66,7 @@ export class RegisterComponent {
     if (this.registerForm?.invalid) {
       return;
     }
-
     const formData = this.registerForm?.value;
-    console.log('Form submitted');
   }
 
   register() {

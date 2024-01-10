@@ -1,13 +1,36 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import {AuthenticationService} from "../../../core/authentication.service";
+import {UserService} from "../../../core/user.service";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-navbar-desktop',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgIf],
   templateUrl: './navbar-desktop.component.html',
   styleUrl: './navbar-desktop.component.css'
 })
 export class NavbarDesktopComponent {
+
+  constructor(
+    private AuthService: AuthenticationService,
+    private UserService: UserService
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.UserService.getUser().subscribe((res: any) => {
+      console.log(res);
+    });
+  }
+
+  logout() {
+    this.AuthService.logout();
+  }
+
+  isAuthenticated(): boolean {
+    return this.UserService.isAuthenticated();
+  }
 
 }
