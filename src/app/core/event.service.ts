@@ -40,6 +40,7 @@ export class EventService extends MainService {
   }
 
   async getUserEventsForMonth(userId: number, month: number): Promise<Event[]> {
+    console.log(`${this.fullApiUrl}/events/user/${userId}/month/${month}`);
     return new Promise((resolve, reject) => {
       this.http.get(`${this.fullApiUrl}/events/user/${userId}/month/${month}`, { headers : this.headers }).subscribe((data) => {
         resolve(data as Event[]);

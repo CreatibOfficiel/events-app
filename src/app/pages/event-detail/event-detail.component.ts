@@ -34,8 +34,6 @@ export class EventDetailComponent {
     
     let event = await this.eventService.getEventById(id);
 
-    console.log(event);
-
     if (event !== null) {
       return event;
     }

@@ -21,7 +21,7 @@ export class CalendarComponent {
   events: Event[] = [];
 
   currentDay: Date = new Date();
-  month: number = this.currentDay.getMonth();
+  month: number = this.currentDay.getMonth() + 1;
   monthString = this.currentDay.toLocaleString('default', { month: 'long' });
   year = this.currentDay.getFullYear();
   faAngleLeft = faAngleLeft;
@@ -33,7 +33,6 @@ export class CalendarComponent {
   ) {}
 
   ngOnInit(): void {
-
     if (this.isAuthenticated()) {
       this.getUserId().then((userId) => {
         this.getUserEventsForMonth(userId, this.month).then((events) => {
@@ -56,7 +55,7 @@ export class CalendarComponent {
 
   nextMonth() {
     this.currentDay.setMonth(this.currentDay.getMonth() + 1);
-    this.month = this.currentDay.getMonth();
+    this.month = this.currentDay.getMonth() + 1;
     this.monthString = this.currentDay.toLocaleString('default', { month: 'long' });
     this.year = this.currentDay.getFullYear();
 
@@ -68,7 +67,7 @@ export class CalendarComponent {
 
   previousMonth() {
     this.currentDay.setMonth(this.currentDay.getMonth() - 1);
-    this.month = this.currentDay.getMonth();
+    this.month = this.currentDay.getMonth() + 1;
     this.monthString = this.currentDay.toLocaleString('default', { month: 'long' });
     this.year = this.currentDay.getFullYear();
 
