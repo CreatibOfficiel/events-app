@@ -12,7 +12,7 @@
         <div class="flex flex-row justify-end mt-10 w-full">
             <p class="text-gray-700 dark:text-gray-400">Organisé par : </p>
             <a href="#" *ngFor="let organizer of selectedEvent.organizers" class="flex flex-col items-center">
-                <img class="w-10 h-10 rounded-full mr-4" src="/assets/img/daniel.jpg" alt="Association profile picture">
+                <img class="w-10 h-10 rounded-full mr-4" src="{{ organizer.name }}" alt="Organizer picture">
                 <p class="text-gray-900 dark:text-gray-400 leading-none font-bold mb-2"> {{ organizer.name }} </p>
             </a>
         </div>
