@@ -26,10 +26,6 @@ export class NavbarDesktopComponent {
     });
   }
 
-  logout() {
-    this.AuthService.logout();
-  }
-
   isAuthenticated(): boolean {
     return this.UserService.isAuthenticated();
   }
