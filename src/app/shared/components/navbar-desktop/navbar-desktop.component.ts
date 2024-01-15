@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router';
 import {AuthenticationService} from "../../../core/authentication.service";
 import {UserService} from "../../../core/user.service";
 import {NgIf} from "@angular/common";
+import { LogoutPopupComponent } from '../logout-popup/logout-popup.component';
 
 @Component({
   selector: 'app-navbar-desktop',
   standalone: true,
-  imports: [RouterLink, NgIf],
+  imports: [RouterLink, NgIf, LogoutPopupComponent],
   templateUrl: './navbar-desktop.component.html',
   styleUrl: './navbar-desktop.component.css'
 })
