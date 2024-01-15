@@ -4,6 +4,7 @@ import { CardComponent } from '../../shared/components/card/card.component';
 import { Company } from '../../models/company.model';
 import { Event } from '../../models/event.model';
 import { EventService } from '../../core/event.service';
+import { UserService } from '../../core/user.service';
 
 @Component({
   selector: 'app-feed',
@@ -16,9 +17,19 @@ export class FeedComponent {
   
   events: Event[] = [];
 
-  constructor(private eventService: EventService) { }
+  constructor(
+    private eventService: EventService,
+    private userService: UserService) { }
 
   ngOnInit(): void {
+
+    let isUserLogged = this.isAuthenticated();
+
+    // If user is not logged, redirect to login page
+    if (!isUserLogged) {
+      window.location.href = '/login';
+    }
+
     //ToDo: Get events by user interests or by following companies
     this.getLatestEvents().then((events) => {
       console.log(events);
@@ -44,6 +55,10 @@ export class FeedComponent {
     }
 
     return [];
+  }
+
+  isAuthenticated(): boolean {
+    return this.userService.isAuthenticated();
   }
 
 }
