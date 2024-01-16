@@ -20,7 +20,8 @@ export class UserService extends MainService{
   getUser(): any {
     return this.http.get(`${this.fullApiUrl}/users`, { headers : this.headers }).pipe(
       tap((res: any) => {
-        return res;
+        console.log(res['hydra:member'][0]);
+        return res['hydra:member'][0];
       }),
       catchError(err => {
         console.log(err);

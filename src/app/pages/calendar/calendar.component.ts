@@ -35,14 +35,23 @@ export class CalendarComponent {
     
     ngOnInit(): void {
 
-      this.getUserId().then((id) => {
-        console.log(id);
-        this.userId = id;
-        this.getUserEventsForMonth(id, this.month).then((events) => {
+      this.userService.getUser().subscribe((res: any) => {
+        console.log(res);
+        this.userId = res.id;
+        this.getUserEventsForMonth(this.userId!, this.month).then((events) => {
           console.log(events);
           this.events = events;
         });
       });
+
+      // this.getUserId().then((id) => {
+      //   console.log(id);
+      //   this.userId = id;
+      //   this.getUserEventsForMonth(id, this.month).then((events) => {
+      //     console.log(events);
+      //     this.events = events;
+      //   });
+      // });
       
       
     }
