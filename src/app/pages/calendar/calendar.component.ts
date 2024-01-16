@@ -34,9 +34,6 @@ export class CalendarComponent {
     ) {}
     
     ngOnInit(): void {
-      if (!this.isAuthenticated()) {
-        window.location.href = '/login';
-      }
 
       this.getUserId().then((id) => {
         console.log(id);
@@ -90,7 +87,6 @@ export class CalendarComponent {
     
     async getUserId(): Promise<number> {
       const currentUser: User = await this.userService.getUser();
-      console.log("Current user:");
       console.log(currentUser);
       return currentUser.id;
     }

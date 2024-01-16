@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../core/user.service';
 
 @Component({
   selector: 'app-search',
@@ -10,16 +9,11 @@ import { UserService } from '../../core/user.service';
 })
 export class SearchComponent {
   constructor(
-    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    if (!this.isAuthenticated()) {
-      window.location.href = '/login';
-    }
+
   }
 
-  isAuthenticated(): boolean {
-    return this.userService.isAuthenticated();
-  }
+
 }

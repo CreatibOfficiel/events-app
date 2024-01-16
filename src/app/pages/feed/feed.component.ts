@@ -23,13 +23,6 @@ export class FeedComponent {
 
   ngOnInit(): void {
 
-    let isUserLogged = this.isAuthenticated();
-
-    // If user is not logged, redirect to login page
-    if (!isUserLogged) {
-      window.location.href = '/login';
-    }
-
     //ToDo: Get events by user interests or by following companies
     this.getLatestEvents().then((events) => {
       console.log(events);
