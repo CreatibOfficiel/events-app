@@ -7,6 +7,7 @@ import {LoginComponent} from "./pages/auth/login/login.component";
 import {RegisterComponent} from "./pages/auth/register/register.component";
 import { EventDetailComponent } from './pages/event-detail/event-detail.component';
 import { authGuard } from './guards/auth.guard';
+import { CreateCompanyComponent } from './pages/company/create-company/create-company.component';
 
 export const routes: Routes = [
     { path: '', component: FeedComponent, canActivate: [authGuard] },
@@ -15,5 +16,6 @@ export const routes: Routes = [
     { path: 'search', component: SearchComponent, canActivate: [authGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'event/:id', component: EventDetailComponent, canActivate: [authGuard] }
+    { path: 'event/:id', component: EventDetailComponent, canActivate: [authGuard] },
+    { path: 'company/create', component: CreateCompanyComponent, canActivate: [authGuard] }
 ];

@@ -1,1 +1,79 @@
-<p>create-company works!</p>
+<div class="bg-grey-200 flex items-center justify-center h-screen grow">
+
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <div class="flex items-center justify-center mb-6">
+            <!-- Ajouter le logo de votre application ici -->
+            <img src="/assets/img/logo.png" alt="Logo" class="w-48 h-48">
+        </div>
+
+        <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label for="name" class="text-sm text-gray-600">Nom</label>
+                <div *ngIf="findtruc('name')">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Attention !</strong> {{findtruc('name').message}}
+                    </div>
+                </div>
+                <input type="text" id="name" formControlName="name"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+            </div>
+
+            <div class="mb-4">
+                <label for="type" class="text-sm text-gray-600">Type</label>
+                <div *ngIf="findtruc('type')">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Attention !</strong> {{findtruc('type').message}}
+                    </div>
+                </div>
+                <select name="type" id="type" formControlName="type"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <option value="0">Entreprise</option>
+                    <option value="1">BDE</option>
+                </select>
+            </div>
+
+            <div class="mb-4" *ngIf="showCategories">
+                <label for="categories" class="text-sm text-gray-600">Catégories</label>
+                <div *ngIf="findtruc('categories')">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Attention !</strong> {{findtruc('categories').message}}
+                    </div>
+                </div>
+                <!--ToDo: Replace with a picker-->
+                <select name="categories" id="categories" formControlName="categories"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <option *ngFor="let category of companyCategories" value="{{category.id}}">{{ category.name }}</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="description" class="text-sm text-gray-600">Description</label>
+                <div *ngIf="findtruc('description')">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Attention !</strong> {{findtruc('description').message}}
+                    </div>
+                </div>
+                <textarea id="description" formControlName="description"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                </textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="location" class="text-sm text-gray-600">Emplacement</label>
+                <div *ngIf="findtruc('location')">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Attention !</strong> {{findtruc('location').message}}
+                    </div>
+                </div>
+                <input type="text" id="location" formControlName="location"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+            </div>
+
+            <button (click)="createCompany()"
+                class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+                Créer l'entreprise
+            </button>
+        </form>
+
+    </div>
+</div>
