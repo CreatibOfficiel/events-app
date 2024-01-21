@@ -20,7 +20,7 @@ export class UserService extends MainService{
   getUser(): any {
     return this.http.get(`${this.fullApiUrl}/users`, { headers : this.headers }).pipe(
       tap((res: any) => {
-        return res['hydra:member'][0];
+        return res;
       }),
       catchError(err => {
         console.log(err);
@@ -32,6 +32,19 @@ export class UserService extends MainService{
   getUserIdByEmail(email: string): any {
     return this.http.get(`${this.fullApiUrl}/users/getByEmail`, { headers : this.headers }).pipe(
       tap((res: any) => {
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  getCurrentUser(): any {
+    return this.http.get(`${this.fullApiUrl}/users/getUser`, { headers : this.headers }).pipe(
+      tap((res: any) => {
+        console.log(res);
         return res;
       }),
       catchError(err => {

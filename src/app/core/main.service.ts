@@ -10,6 +10,8 @@ export class MainService {
   public fullApiUrl = `${this.apiUrl}/api`;
   public token = this.getToken();
   public headers = this.getHeaders();
+  public headersPost = this.postHeaders();
+
   constructor(
     http: HttpClient
   ) {
@@ -20,7 +22,16 @@ export class MainService {
   }
 
   public getHeaders(): HttpHeaders {
-    return new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
+    return new HttpHeaders()
+      .set('Authorization', `Bearer ${this.getToken()}`)
+      .set('Content-Type', 'application/json');
+  }
+
+  public postHeaders(): HttpHeaders {
+    return new HttpHeaders()
+      .set('Authorization', `Bearer ${this.getToken()}`)
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json');
   }
 
 }

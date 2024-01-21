@@ -26,7 +26,9 @@ export class CreateCompanyComponent {
         type: ['', Validators.required],
         categories: [''],
         description: ['', Validators.required],
-        location: ['', Validators.required]
+        creationDate: ['', Validators.required],
+        location: ['', Validators.required],
+        validated: ['', Validators.required]
       });
 
       this.companyForm.get('type')?.valueChanges.subscribe((value) => {
@@ -45,7 +47,10 @@ export class CreateCompanyComponent {
     }
 
     createCompany() {
+      this.companyForm.value.creationDate = new Date();
+      this.companyForm.value.validated = false;
       console.log(this.companyForm.value);
+      
       this.companyService.postCompany(this.companyForm.value).then(
         (data) => {
           console.log(data);
