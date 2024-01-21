@@ -1,0 +1,42 @@
+<div class="bg-grey-200 flex items-center justify-center h-screen grow">
+
+    <div class="bg-white p-8 rounded-lg shadow-md w-96 flex flex-col space-y-5">
+        <div class="flex flex-col space-y-2">
+            <span class="text-4xl font-semibold">Sélectionne ton profil</span>
+            <span class="text-lg text-gray-500">Obtiens des fonctionnalités spécifique en fonction de ton profil</span>
+        </div>
+
+        <form>
+            <div class="mb-4">
+                <div class="flex items-center ps-4 border border-gray-200 rounded">
+                    <input id="bordered-radio-1" type="radio" value="" name="bordered-radio"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                    <label for="bordered-radio-1"
+                        class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Étudiant</label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="flex items-center ps-4 border border-gray-200 rounded">
+                    <input checked id="bordered-radio-2" type="radio" value="" name="bordered-radio"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                    <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900">BDE</label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="flex items-center ps-4 border border-gray-200 rounded">
+                    <input checked id="bordered-radio-3" type="radio" value="" name="bordered-radio"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2">
+                    <label for="bordered-radio-3"
+                        class="w-full py-4 ms-2 text-sm font-medium text-gray-900">Entreprise</label>
+                </div>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+                Valider
+            </button>
+        </form>
+    </div>
+</div>
