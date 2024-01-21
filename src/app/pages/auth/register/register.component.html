@@ -1,9 +1,10 @@
 <div class="bg-grey-200 flex items-center justify-center h-screen grow">
 
-    <div class="bg-white p-8 rounded-lg shadow-md w-96">
-        <div class="flex items-center justify-center mb-6">
-            <!-- Ajouter le logo de votre application ici -->
-            <img src="/assets/img/logo.png" alt="Logo" class="w-48 h-48">
+    <div class="bg-white p-8 rounded-lg shadow-md w-96 flex flex-col space-y-5">
+        <div class="flex flex-col space-y-2">
+            <span class="text-4xl font-semibold">Bienvenue ! 👋</span>
+            <span class="text-lg text-gray-500">Créez votre compte EventsApp pour profiter pleinement de
+                l'application</span>
         </div>
 
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">

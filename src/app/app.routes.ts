@@ -13,6 +13,8 @@ import { ValidateCompanyComponent } from './pages/admin/company/validate-company
 import { TagsManagementComponent } from './pages/admin/tags/tags-management/tags-management.component';
 import { UserManagementComponent } from './pages/admin/user/user-management/user-management.component';
 import { EditUserComponent } from './pages/admin/user/edit-user/edit-user.component';
+import { SelectTagsComponent } from './pages/select-tags/select-tags.component';
+import { SelectUserTypeComponent } from './pages/select-user-type/select-user-type.component';
 
 
 export const routes: Routes = [
@@ -29,4 +31,6 @@ export const routes: Routes = [
     { path: 'admin/tags', component: TagsManagementComponent, canActivate: [authGuard] },
     { path: 'admin/users', component: UserManagementComponent, canActivate: [authGuard]},
     { path: 'admin/user/edit/:id', component: EditUserComponent, canActivate: [authGuard] },
+    { path: 'select-tags', component: SelectTagsComponent },
+    { path: 'select-user-type', component: SelectUserTypeComponent },
 ];
