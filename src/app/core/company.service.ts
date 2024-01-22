@@ -47,10 +47,21 @@ export class CompanyService extends MainService{
           console.log(err);
           return of(false);
         })
-        );
+      );
+    }
+      
+    async editCompany(id: number, company: Company): Promise<Company|null> {
+      return new Promise((resolve, reject) => {
+        this.http.put(`${this.fullApiUrl}/companies/${id}`, company, { headers : this.headersPost }).subscribe(
+          (data) => {
+            resolve(data as Company);
+          },
+          (error) => {
+            reject(error);
+          }
+          );
+        });
       }
-      
-      
       
       
 }

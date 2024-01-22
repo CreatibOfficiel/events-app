@@ -32,7 +32,7 @@ export class CreateCompanyComponent {
       });
 
       this.companyForm.get('type')?.valueChanges.subscribe((value) => {
-        if (value == 0) {
+        if (value == 'Entreprise') {
           this.showCategories = true;
         } else {
           this.showCategories = false;

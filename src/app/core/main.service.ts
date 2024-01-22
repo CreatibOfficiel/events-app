@@ -24,7 +24,7 @@ export class MainService {
   public getHeaders(): HttpHeaders {
     return new HttpHeaders()
       .set('Authorization', `Bearer ${this.getToken()}`)
-      .set('Content-Type', 'application/json');
+      .set('Accept', 'application/json');
   }
 
   public postHeaders(): HttpHeaders {
