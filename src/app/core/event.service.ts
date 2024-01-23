@@ -48,9 +48,9 @@ export class EventService extends MainService {
     });
   }
 
-  async getEventsByUserInterests(userId: number): Promise<Event[]> {
+  async getEventsByUserInterests(userId: number, page: number): Promise<Event[]> {
     return new Promise((resolve, reject) => {
-      this.http.get(`${this.fullApiUrl}/events/user/byUserAndInterests/${userId}`, { headers : this.headers }).subscribe((data) => {
+      this.http.get(`${this.fullApiUrl}/events/user/byUserAndInterests/${userId}?page=${page}`, { headers : this.headers }).subscribe((data) => {
         resolve(data as Event[]);
       });
     });

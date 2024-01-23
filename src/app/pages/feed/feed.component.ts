@@ -16,6 +16,7 @@ import { UserService } from '../../core/user.service';
 export class FeedComponent {
   
   events: Event[] = [];
+  pageToLoad = 1;
 
   constructor(
     private eventService: EventService,
@@ -40,8 +41,8 @@ export class FeedComponent {
     return [];
   }
 
-  async getEventsByUserInterests(userId: number): Promise<Event[]> {
-    let events = await this.eventService.getEventsByUserInterests(userId);
+  async getEventsByUserInterests(userId: number, page: number): Promise<Event[]> {
+    let events = await this.eventService.getEventsByUserInterests(userId, page);
 
     if (events !== null) {
       return events;
