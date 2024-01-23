@@ -9,6 +9,7 @@ import { EventDetailComponent } from './pages/event-detail/event-detail.componen
 import { authGuard } from './guards/auth.guard';
 import { CreateCompanyComponent } from './pages/company/create-company/create-company.component';
 import { EditCompanyComponent } from './pages/company/edit-company/edit-company.component';
+import { ValidateCompanyComponent } from './pages/admin/company/validate-company/validate-company.component';
 
 
 export const routes: Routes = [
@@ -20,5 +21,6 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'event/:id', component: EventDetailComponent, canActivate: [authGuard] },
     { path: 'company/create', component: CreateCompanyComponent, canActivate: [authGuard] },
-    { path: 'company/edit/:id', component: EditCompanyComponent, canActivate: [authGuard]}
+    { path: 'company/edit/:id', component: EditCompanyComponent, canActivate: [authGuard]},
+    { path: 'admin/company/validate', component: ValidateCompanyComponent, canActivate: [authGuard] },
 ];
