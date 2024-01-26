@@ -1,5 +1,5 @@
 
 <div class="flex flex-col justify-center items-center pb-16">
     <app-card *ngFor="let event of events" [event]="event" class="w-full"></app-card>
-    <mat-spinner *ngIf="loading" [color]="spinnerColor"></mat-spinner>
+    <mat-spinner *ngIf="loading" [color]="spinnerColor" class="mt-5"></mat-spinner>
 </div> 

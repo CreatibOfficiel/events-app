@@ -35,7 +35,7 @@ export class AuthenticationService extends MainService{
   }
 
   register(data: any): Observable<any> {
-    return this.http.post(`${this.fullApiUrl}/users`, data).pipe(
+    return this.http.post(`${this.fullApiUrl}/users`, data, { headers : this.headersPost }).pipe(
       tap((res: any) => {
         if (res.code === 201) {
           return res;

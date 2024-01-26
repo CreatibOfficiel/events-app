@@ -39,13 +39,14 @@ export class FeedComponent {
     @HostListener('window:scroll', ['$event'])
     onScroll(event: any) {
       
-      // detect when user scrolls to the bottom of the page
-      if ((window.innerHeight + window.scrollY + 1) >= document.body.offsetHeight) {
+      console.log(event.target.scrollingElement.scrollHeight - event.target.scrollingElement.scrollTop);
+      console.log(event.target.scrollingElement.clientHeight);
+      if ((event.target.scrollingElement.scrollHeight - event.target.scrollingElement.scrollTop) <= event.target.scrollingElement.clientHeight + 100) {
         this.loading = true;
         console.log(this.loading);
       } else {
         this.loading = false;
-        console.log(this.loading);
+        //console.log(this.loading);
       }
     }
 
