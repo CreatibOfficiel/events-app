@@ -10,6 +10,7 @@ import { authGuard } from './guards/auth.guard';
 import { CreateCompanyComponent } from './pages/company/create-company/create-company.component';
 import { EditCompanyComponent } from './pages/company/edit-company/edit-company.component';
 import { ValidateCompanyComponent } from './pages/admin/company/validate-company/validate-company.component';
+import { TagsManagementComponent } from './pages/admin/tags/tags-management/tags-management.component';
 
 
 export const routes: Routes = [
@@ -23,4 +24,5 @@ export const routes: Routes = [
     { path: 'company/create', component: CreateCompanyComponent, canActivate: [authGuard] },
     { path: 'company/edit/:id', component: EditCompanyComponent, canActivate: [authGuard]},
     { path: 'admin/company/validate', component: ValidateCompanyComponent, canActivate: [authGuard] },
+    { path: 'admin/tags', component: TagsManagementComponent, canActivate: [authGuard] },
 ];

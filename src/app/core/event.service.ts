@@ -31,7 +31,7 @@ export class EventService extends MainService {
   }
 
 
-  getLatestEvents(): Promise<Event[]> {
+  async getLatestEvents(): Promise<Event[]> {
     return new Promise((resolve, reject) => {
       this.http.get(`${this.fullApiUrl}/events/latest`, { headers : this.headers }).subscribe((data) => {
         resolve(data as Event[]);
