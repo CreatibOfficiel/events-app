@@ -39,14 +39,14 @@ export class FeedComponent {
     @HostListener('window:scroll', ['$event'])
     onScroll(event: any) {
       
-      console.log(event.target.scrollingElement.scrollHeight - event.target.scrollingElement.scrollTop);
-      console.log(event.target.scrollingElement.clientHeight);
+      //console.log(event.target.scrollingElement.scrollHeight - event.target.scrollingElement.scrollTop);
+      //console.log(event.target.scrollingElement.clientHeight);
       if ((event.target.scrollingElement.scrollHeight - event.target.scrollingElement.scrollTop) <= event.target.scrollingElement.clientHeight + 100) {
         this.loading = true;
         console.log(this.loading);
       } else {
         this.loading = false;
-        //console.log(this.loading);
+        console.log(this.loading);
       }
     }
 

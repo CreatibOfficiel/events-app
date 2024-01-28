@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { CompanyCategory } from '../../../models/company-category.model';
 import { CompanyService } from '../../../core/company.service';
 import { Company } from '../../../models/company.model';
@@ -26,13 +26,13 @@ export class EditCompanyComponent {
     private route: ActivatedRoute
     ) { 
       this.editCompanyForm = this.formBuilder.group({
-        name: ["", Validators.required],
-        type: ["", Validators.required],
-        categories: ["", Validators.required],
-        description: ["", Validators.required],
-        creationDate: ["", Validators.required],
-        location: ["", Validators.required],
-        validated: ["", Validators.required]
+        name: ['', Validators.required],
+        type: ['', Validators.required],
+        categories: [''],
+        description: ['', Validators.required],
+        creationDate: [''],
+        location: ['', Validators.required],
+        validated: ['']
       });
       
       this.route.params.subscribe(params => {
@@ -51,7 +51,13 @@ export class EditCompanyComponent {
                 this.showCategories = true;
               } else {
                 this.showCategories = false;
+      
+                this.editCompanyForm.get('categories')?.setValue('');
+                this.editCompanyForm.get('categories')?.clearValidators();
               }
+      
+              this.editCompanyForm.get('categories')?.setValidators(this.categoriesValidator(this.editCompanyForm.get('type')!));
+              this.editCompanyForm.get('categories')?.updateValueAndValidity();
             });
           }
           );
@@ -112,6 +118,15 @@ export class EditCompanyComponent {
               location: this.selectedCompany?.location,
               validated: this.selectedCompany?.validated
             });
+          }
+
+          categoriesValidator(typeControl: AbstractControl): ValidatorFn {
+            return (control: AbstractControl): { [key: string]: any } | null => {
+              if (typeControl.value === 'Entreprise' && !control.value) {
+                return { 'categoriesRequired': true };
+              }
+              return null;
+            };
           }
         }
         

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CompanyService } from '../../../core/company.service';
 import { CompanyCategory } from '../../../models/company-category.model';
@@ -26,9 +26,9 @@ export class CreateCompanyComponent {
         type: ['', Validators.required],
         categories: [''],
         description: ['', Validators.required],
-        creationDate: ['', Validators.required],
+        creationDate: [''],
         location: ['', Validators.required],
-        validated: ['', Validators.required]
+        validated: ['']
       });
 
       this.companyForm.get('type')?.valueChanges.subscribe((value) => {
@@ -36,7 +36,13 @@ export class CreateCompanyComponent {
           this.showCategories = true;
         } else {
           this.showCategories = false;
+
+          this.companyForm.get('categories')?.setValue('');
+          this.companyForm.get('categories')?.clearValidators();
         }
+
+        this.companyForm.get('categories')?.setValidators(this.categoriesValidator(this.companyForm.get('type')!));
+        this.companyForm.get('categories')?.updateValueAndValidity();
       });
     }
 
@@ -51,6 +57,10 @@ export class CreateCompanyComponent {
       this.companyForm.value.validated = false;
       console.log(this.companyForm.value);
       
+      if (this.companyForm.invalid) {
+        return;
+      }
+
       this.companyService.postCompany(this.companyForm.value).then(
         (data) => {
           console.log(data);
@@ -65,16 +75,21 @@ export class CreateCompanyComponent {
       const formData = this.companyForm?.value;
     }
     
-    findtruc(test : string) {
-      return this.errorManager.find((element) => element.propertyPath === test);
-    }
-
     getCategories()  {
       this.companyService.getCompanyCategories().subscribe(
         (data: CompanyCategory[]) => {
           this.companyCategories = data;
         }
       );
+    }
+
+    categoriesValidator(typeControl: AbstractControl): ValidatorFn {
+      return (control: AbstractControl): { [key: string]: any } | null => {
+        if (typeControl.value === 'Entreprise' && !control.value) {
+          return { 'categoriesRequired': true };
+        }
+        return null;
+      };
     }
 
   }

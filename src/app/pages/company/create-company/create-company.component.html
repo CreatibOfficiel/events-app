@@ -9,37 +9,27 @@
         <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
             <div class="mb-4">
                 <label for="name" class="text-sm text-gray-600">Nom</label>
-                <div *ngIf="findtruc('name')">
-                    <div class="alert alert-danger" role="alert">
-                        <strong>Attention !</strong> {{findtruc('name').message}}
-                    </div>
-                </div>
                 <input type="text" id="name" formControlName="name"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <div *ngIf="companyForm.get('name')?.hasError('required') && companyForm.get('name')?.touched" class="alert alert-danger text-sm text-red-600" role="alert">
+                        <strong>Attention !</strong> Le nom est obligatoire
+                    </div>
             </div>
 
             <div class="mb-4">
                 <label for="type" class="text-sm text-gray-600">Type</label>
-                <div *ngIf="findtruc('type')">
-                    <div class="alert alert-danger" role="alert">
-                        <strong>Attention !</strong> {{findtruc('type').message}}
-                    </div>
-                </div>
                 <select name="type" id="type" formControlName="type"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                     <option value="Entreprise">Entreprise</option>
                     <option value="BDE">BDE</option>
                 </select>
+                <div *ngIf="companyForm.get('type')?.hasError('required') && companyForm.get('type')?.touched" class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> Le type est obligatoire
+                </div>
             </div>
 
             <div class="mb-4" *ngIf="showCategories">
                 <label for="categories" class="text-sm text-gray-600">Catégories</label>
-                <div *ngIf="findtruc('categories')">
-                    <div class="alert alert-danger" role="alert">
-                        <strong>Attention !</strong> {{findtruc('categories').message}}
-                    </div>
-                </div>
-                <!--ToDo: Replace with a picker-->
                 <select name="categories" id="categories" formControlName="categories"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                     <option *ngFor="let category of companyCategories" value="{{category.id}}">{{ category.name }}</option>
@@ -48,29 +38,25 @@
 
             <div class="mb-4">
                 <label for="description" class="text-sm text-gray-600">Description</label>
-                <div *ngIf="findtruc('description')">
-                    <div class="alert alert-danger" role="alert">
-                        <strong>Attention !</strong> {{findtruc('description').message}}
-                    </div>
-                </div>
                 <textarea id="description" formControlName="description"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                 </textarea>
+                <div *ngIf="companyForm.get('description')?.hasError('required') && companyForm.get('description')?.touched" class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> La description est obligatoire
+                </div>
             </div>
 
             <div class="mb-4">
                 <label for="location" class="text-sm text-gray-600">Emplacement</label>
-                <div *ngIf="findtruc('location')">
-                    <div class="alert alert-danger" role="alert">
-                        <strong>Attention !</strong> {{findtruc('location').message}}
-                    </div>
-                </div>
                 <input type="text" id="location" formControlName="location"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="companyForm.get('location')?.hasError('required') && companyForm.get('location')?.touched" class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> L'emplacement est obligatoire
+                </div>
             </div>
 
             <button (click)="createCompany()"
-                class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+                class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 {{ companyForm.invalid ? 'bg-gray-400 hover:bg-gray-400' : '' }}" [disabled]="companyForm.invalid">
                 Créer l'entreprise
             </button>
         </form>
