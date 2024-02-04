@@ -11,6 +11,8 @@ import { CreateCompanyComponent } from './pages/company/create-company/create-co
 import { EditCompanyComponent } from './pages/company/edit-company/edit-company.component';
 import { ValidateCompanyComponent } from './pages/admin/company/validate-company/validate-company.component';
 import { TagsManagementComponent } from './pages/admin/tags/tags-management/tags-management.component';
+import { UserManagementComponent } from './pages/admin/user/user-management/user-management.component';
+import { EditUserComponent } from './pages/admin/user/edit-user/edit-user.component';
 
 
 export const routes: Routes = [
@@ -25,4 +27,6 @@ export const routes: Routes = [
     { path: 'company/edit/:id', component: EditCompanyComponent, canActivate: [authGuard]},
     { path: 'admin/company/validate', component: ValidateCompanyComponent, canActivate: [authGuard] },
     { path: 'admin/tags', component: TagsManagementComponent, canActivate: [authGuard] },
+    { path: 'admin/users', component: UserManagementComponent, canActivate: [authGuard]},
+    { path: 'admin/user/edit/:id', component: EditUserComponent, canActivate: [authGuard] },
 ];

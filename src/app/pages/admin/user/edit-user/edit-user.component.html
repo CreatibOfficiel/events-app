@@ -1,0 +1,55 @@
+<div class="bg-grey-200 flex items-center justify-center h-screen grow">
+
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <div class="flex items-center justify-center mb-6">
+            <!-- Ajouter le logo de votre application ici -->
+            <img src="/assets/img/logo.png" alt="Logo" class="w-48 h-48">
+        </div>
+
+        <form [formGroup]="editUserForm">
+            <div class="mb-4">
+                <label for="firstname" class="text-sm text-gray-600">Prénom</label>
+                <input type="text" id="firstname" formControlName="firstname"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="editUserForm.get('firstname')?.hasError('required') && editUserForm.get('firstname')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> Le prénom est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="lastname" class="text-sm text-gray-600">Nom</label>
+                <input type="text" id="lastname" formControlName="lastname"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="editUserForm.get('lastname')?.hasError('required') && editUserForm.get('lastname')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> Le nom est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="text-sm text-gray-600">Mail</label>
+                <input type="text" id="email" formControlName="email"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="editUserForm.get('email')?.hasError('required') && editUserForm.get('email')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> Le mail est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="companies" class="text-sm text-gray-600">Association</label>
+                <select name="companies" id="companies" formControlName="companies"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <option *ngFor="let company of companies" value="{{company.id}}">{{ company.name }}</option>
+                </select>
+            </div>
+
+            <button (click)="updateUser()"
+                class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 {{ editUserForm.invalid ? 'bg-gray-400 hover:bg-gray-400' : '' }}" [disabled]="editUserForm.invalid">
+                Modifier l'utilisateur
+            </button>
+        </form>
+
+    </div>
+</div>

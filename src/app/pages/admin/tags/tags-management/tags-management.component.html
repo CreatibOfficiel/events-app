@@ -1,10 +1,16 @@
 <div class="bg-grey-200 flex flex-col items-center justify-start h-screen grow">
-    <div class="flex justify-center w-screen pt-5">
-        <input type="text" id="newTag" class="w-1/2 px-3 py-2 mb-3 text-sm text-gray-700 placeholder-gray-300 border rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300" placeholder="Create a new tag" [(ngModel)]="newTagName">
+    <form [formGroup]="tagForm" class="flex justify-center w-screen pt-5">
+        <input type="text" id="newTag" class="w-1/2 px-3 py-2 mb-3 text-sm text-gray-700 placeholder-gray-300 border rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300" placeholder="Create a new tag">
+        <div *ngIf="tagForm.get('name')?.hasError('required') && tagForm.get('name')?.touched" class="alert alert-danger text-sm text-red-600" role="alert">
+            <strong>Attention !</strong> Le nom est obligatoire
+        </div>
+        <div *ngIf="tagForm.get('name')?.hasError('uniqueNameValidator') && tagForm.get('name')?.touched" class="alert alert-danger text-sm text-red-600" role="alert">
+            <strong>Attention !</strong> Le nom est déjà utilisé
+        </div>
         <button (click)="createTag()" class="inline-flex items-center px-3 py-2 mb-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Create
         </button>
-    </div>
+    </form>
     
     
     <div *ngFor="let tag of tags" class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

@@ -71,6 +71,19 @@ export class CompanyService extends MainService{
             });
           });
         }
+
+        getAllCompanies(): any {
+          return this.http.get(`${this.fullApiUrl}/companies`, { headers : this.headers }).pipe(
+            tap((res: any) => {
+              console.log(res);
+              return res;
+            }),
+            catchError(err => {
+              console.log(err);
+              return of(false);
+            })
+          );
+        }
         
         
       }

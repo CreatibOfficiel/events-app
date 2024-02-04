@@ -93,6 +93,11 @@ export class EditCompanyComponent {
         }
         
         updateCompany() {
+
+          if (this.editCompanyForm.invalid) {
+            return;
+          }
+          
           this.companyService.editCompany(this.selectedCompany?.id as number, this.editCompanyForm.value).then(
             (data) => {
               console.log(data);
