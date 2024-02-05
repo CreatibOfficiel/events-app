@@ -2,13 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of, tap } from 'rxjs';
 import {MainService} from "./main.service";
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root',
 
 })
 export class AuthenticationService extends MainService{
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private userService: UserService
+  ) {
     super(http);
   }
 
@@ -23,6 +27,8 @@ export class AuthenticationService extends MainService{
           if (res && res.token) {
             // Store the token in local storage
             localStorage.setItem('token', res.token);
+            this.setCurrentUser(res.token);
+
             return true;
           }
           return false; // Add this line to handle the case when the token is not present
@@ -59,5 +65,11 @@ export class AuthenticationService extends MainService{
   isAuthenticated(): boolean {
     // Check if the user is authenticated by getting the token
     return !!localStorage.getItem('token');
+  }
+
+  private setCurrentUser(token: string) {
+    this.userService.getCurrentUser(token).subscribe((res: any) => {
+      this.userService.setCurrentUser(res);
+    });
   }
 }

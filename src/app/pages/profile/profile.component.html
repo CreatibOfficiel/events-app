@@ -9,7 +9,7 @@
                         src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D%20687w"
                         alt="">
                 </div>
-                <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Nom prénom</h1>
+                <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ userData.getFullName() }}</h1>
                 <h3 class="text-gray-600 font-lg text-semibold leading-6">BDE ou Entreprise</h3>
                 <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">Petite biographique de l'entreprise ou de
                     l'utilisateur : Lorem ipsum dolor sit amet
@@ -49,11 +49,11 @@
                     <div class="grid md:grid-cols-2 text-sm">
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Prénom</div>
-                            <div class="px-4 py-2">Jane</div>
+                            <div class="px-4 py-2">{{ userData.getFirstName() }}</div>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Nom</div>
-                            <div class="px-4 py-2">Doe</div>
+                            <div class="px-4 py-2">{{ userData.getLastName() }}</div>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Genre</div>
@@ -62,7 +62,7 @@
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Email.</div>
                             <div class="px-4 py-2">
-                                <a class="text-blue-800" href="mailto:jane@example.com">email&#64;example.com</a>
+                                <a class="text-blue-800" href="mailto:jane@example.com">{{ userData.getEmail() }}</a>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {catchError, of, tap} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MainService} from "./main.service";
 import { User } from '../models/user.model';
 
@@ -8,7 +8,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService extends MainService{
-
+  user: User = new User();
 
   constructor(private http: HttpClient) {
     super(http);
@@ -18,7 +18,12 @@ export class UserService extends MainService{
     return !!this.token;
   }
 
-  getUser(): any {
+  getUser() : User {
+    console.log(this.user);
+    return this.user;
+  }
+
+  getUserChelou(): any {
     return this.http.get(`${this.fullApiUrl}/users`, { headers : this.headers }).pipe(
       tap((res: any) => {
         return res;
@@ -42,10 +47,15 @@ export class UserService extends MainService{
     );
   }
 
-  getCurrentUser(): any {
-    return this.http.get(`${this.fullApiUrl}/users/getUser`, { headers : this.headers }).pipe(
+  getCurrentUser(token?:string): any {
+    return this.http.get(`${this.fullApiUrl}/users/getUser`, {
+      headers : token ? new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        : this.headers
+    }).pipe(
       tap((res: any) => {
-        console.log(res);
         return res;
       }),
       catchError(err => {
@@ -98,4 +108,15 @@ export class UserService extends MainService{
       });
     });
   }
+
+  setCurrentUser(res: any) {
+    console.log('Setting current user with response:', res);
+    if (res && res.id) { // Assuming `res` has the user details
+      this.user = new User(res.id, res.firstname, res.lastname, res.email, res.password, res.company);
+      console.log('Current user set:', this.user);
+    } else {
+      console.error('Failed to set current user due to invalid response:', res);
+    }
+  }
+
 }

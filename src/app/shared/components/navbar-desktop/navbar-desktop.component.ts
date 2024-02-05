@@ -21,7 +21,7 @@ export class NavbarDesktopComponent {
   }
 
   ngOnInit(): void {
-    this.UserService.getUser().subscribe((res: any) => {
+    this.UserService.getUserChelou().subscribe((res: any) => {
       console.log(res);
     });
   }

@@ -24,7 +24,7 @@ export class EditUserComponent {
     private companyService: CompanyService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
-  ) { 
+  ) {
     this.editUserForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -79,7 +79,7 @@ export class EditUserComponent {
       return;
     }
 
-    this.userService.updateUser(this.selectedUser!.id, this.editUserForm.value).subscribe((res) => {
+    this.userService.updateUser(this.selectedUser!.getId(), this.editUserForm.value).subscribe((res) => {
       console.log(res);
     });
   }
