@@ -9,7 +9,7 @@ export class Company {
     creationDate: Date;
     location: string;
     validated: boolean;
-    
+
     constructor(id: number, name: string, type: string, categories: CompanyCategory[], description: string, creationDate: Date, location: string, validated: boolean) {
         this.id = id;
         this.name = name;
@@ -19,5 +19,13 @@ export class Company {
         this.creationDate = creationDate;
         this.location = location;
         this.validated = validated;
+    }
+
+    getCompanyType(): string {
+        return this.type;
+    }
+
+    getDescritpion(): string {
+        return this.description;
     }
 }

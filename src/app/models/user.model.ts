@@ -21,8 +21,12 @@ export class User {
         return `${this.getFirstName()} ${this.getLastName()}`;
     }
 
-    getCompany(): string {
-        return this.company?.name || '';
+    getCompany(): Company | null | undefined {
+        return this.isCompany() ? this.company : null;
+    }
+
+    isCompany(): boolean {
+      return this.company !== undefined;
     }
 
     getEmail(): string {
