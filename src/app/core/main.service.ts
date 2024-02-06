@@ -11,6 +11,7 @@ export class MainService {
   public token = this.getToken();
   public headers = this.getHeaders();
   public headersPost = this.postHeaders();
+  public headersPostNoToken = this.postHeadersNoToken();
 
   constructor(
     http: HttpClient
@@ -33,5 +34,13 @@ export class MainService {
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json');
   }
+
+  public postHeadersNoToken(): HttpHeaders {
+    return new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json');
+  }
+
+
 
 }
