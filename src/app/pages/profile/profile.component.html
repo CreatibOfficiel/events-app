@@ -4,29 +4,26 @@
         <div class="w-full md:w-3/12 md:mx-2">
             <!-- Profile Card -->
             <div class="bg-white p-3 border-t-4 border-green-400">
-                <div class="image overflow-hidden">
-                    <img class="h-auto w-full mx-auto"
-                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D%20687w"
-                        alt="">
+<!--                <div class="image overflow-hidden">-->
+<!--                    <img class="h-auto w-full mx-auto"-->
+<!--                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D%20687w"-->
+<!--                        alt="">-->
+<!--                </div>-->
+              <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ userData.getFullName() }}</h1>
+              <div *ngIf="userData.isCompany()">
+                  <h3 class="text-gray-600 font-lg text-semibold leading-6">{{ userData.company?.type }}</h3>
+                  <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">
+                    {{ userData.company?.description }}
+                  </p>
                 </div>
-                <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ userData.getFullName() }}</h1>
-                <h3 class="text-gray-600 font-lg text-semibold leading-6">BDE ou Entreprise</h3>
-                <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">Petite biographique de l'entreprise ou de
-                    l'utilisateur : Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit.
-                    Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt</p>
-                <ul
-                    class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
-                    <li class="flex items-center py-3">
-                        <span>Status</span>
-                        <span class="ml-auto"><span
-                                class="bg-green-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
-                    </li>
-                    <li class="flex items-center py-3">
-                        <span>Inscrit depuis</span>
-                        <span class="ml-auto">Nov 07, 2016</span>
-                    </li>
-                </ul>
+
+<!--                <ul-->
+<!--                    class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">-->
+<!--                    <li class="flex items-center py-3">-->
+<!--                        <span>Inscrit depuis</span>-->
+<!--                        <span class="ml-auto">Nov 07, 2016</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
             </div>
             <!-- End of profile card -->
         </div>
@@ -36,14 +33,13 @@
             <!-- About Section -->
             <div class="bg-white p-3 shadow-sm rounded-sm">
                 <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
-                    <span clas="text-green-500">
+                    <span class="text-green-500">
                         <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                     </span>
-                    <span class="tracking-wide">À propos</span>
                 </div>
                 <div class="text-gray-700">
                     <div class="grid md:grid-cols-2 text-sm">
@@ -54,10 +50,6 @@
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Nom</div>
                             <div class="px-4 py-2">{{ userData.getLastName() }}</div>
-                        </div>
-                        <div class="grid grid-cols-2">
-                            <div class="px-4 py-2 font-semibold">Genre</div>
-                            <div class="px-4 py-2">Femme</div>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Email.</div>

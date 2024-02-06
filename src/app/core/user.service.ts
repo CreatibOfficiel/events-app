@@ -14,6 +14,13 @@ export class UserService extends MainService{
     super(http);
   }
 
+  ngOnInit() {
+    console.log('User service init');
+    console.log('User:', this.user);
+    console.log('User from local storage:', JSON.parse(localStorage.getItem('user') || '{}'));
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+  }
+
   isAuthenticated(): boolean {
     return !!this.token;
   }
@@ -113,6 +120,7 @@ export class UserService extends MainService{
     console.log('Setting current user with response:', res);
     if (res && res.id) { // Assuming `res` has the user details
       this.user = new User(res.id, res.firstname, res.lastname, res.email, res.password, res.company);
+      localStorage.setItem('user', JSON.stringify(this.user));
       console.log('Current user set:', this.user);
     } else {
       console.error('Failed to set current user due to invalid response:', res);
