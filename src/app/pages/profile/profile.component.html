@@ -4,11 +4,11 @@
         <div class="w-full md:w-3/12 md:mx-2">
             <!-- Profile Card -->
             <div class="bg-white p-3 border-t-4 border-green-400">
-<!--                <div class="image overflow-hidden">-->
-<!--                    <img class="h-auto w-full mx-auto"-->
-<!--                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D%20687w"-->
-<!--                        alt="">-->
-<!--                </div>-->
+                <!--<div class="image overflow-hidden">
+                    <img class="h-auto w-full mx-auto"
+                        src="https://i.pravatar.cc/300"
+                        alt="">
+                </div>-->
               <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ userData.getFullName() }}</h1>
               <div *ngIf="userData.isCompany()">
                   <h3 class="text-gray-600 font-lg text-semibold leading-6">{{ userData.company?.type }}</h3>

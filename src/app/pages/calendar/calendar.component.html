@@ -4,6 +4,10 @@
         <h2 class="ml-4 mr-4">{{ monthString }} {{ year }}</h2>
         <fa-icon [icon]="faAngleRight" (click)="nextMonth()"></fa-icon>
     </div>
+
+    <div *ngIf="events.length == 0" class="flex justify-center w-full">
+        <p class="font-bold text-gray-90">Aucun événement suivi pour ce mois</p>
+    </div>
     
     <app-card *ngFor="let event of events" [event]="event" class="w-full"></app-card>
 </div>

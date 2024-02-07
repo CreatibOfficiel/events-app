@@ -1,0 +1,24 @@
+<button (click)="backClicked()"
+    class="flex text-red-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>
+</button>
+
+<div *ngIf="selectedCompany != null" class="flex flex-col w-full items-center">
+    
+    <div class="flex flex-col items-center w-9/12 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ selectedCompany.name }}</h5>
+        <p class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Type : {{ selectedCompany.type }} </p>
+        <p *ngIf="selectedCompany.categories.length > 0" class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Catégorie : {{ selectedCompany.categories }} </p>
+        <p class="font-normal text-gray-700 dark:text-gray-400"> Adresse : {{ selectedCompany.location }} </p>
+        <p class="font-normal text-gray-700 dark:text-gray-400"> Description : {{ selectedCompany.description }} </p>
+        <div class="flex flex-row justify-end mt-10 w-full">
+            <p class="text-gray-700 dark:text-gray-400">Evènements organisés : </p>
+            <!--ToDo: Get events from company-->
+            <!--<a href="#" *ngFor="let organizer of selectedEvent.organizers" class="flex flex-col items-center">
+                <img class="w-10 h-10 rounded-full mr-4" src="{{ organizer.name }}" alt="Organizer picture">
+                <p class="text-gray-900 dark:text-gray-400 leading-none font-bold mb-2"> {{ organizer.name }} </p>
+            </a>-->
+        </div>
+    </div>
+    
+</div>
