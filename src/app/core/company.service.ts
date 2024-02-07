@@ -117,5 +117,11 @@ export class CompanyService extends MainService{
           );
         }
 
-
-      }
+        async search(searchValue: string): Promise<Company[]> {
+          return new Promise((resolve, reject) => {
+            this.http.post(`${this.fullApiUrl}/companies/search`, {search : searchValue } ,{ headers : this.headers }).subscribe((data) => {
+              resolve(data as Company[]);
+            });
+          });
+        }
+}

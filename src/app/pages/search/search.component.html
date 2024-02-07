@@ -1,1 +1,15 @@
-<p>search works!</p>
+<div class="container mx-auto">
+  <div class="flex p-5 items-center justify-center">
+    <input [(ngModel)]="searchValue" (ngModelChange)="search()" type="text"
+           class="w-screen h-10 px-3 text-gray-700 border rounded-lg focus:outline-1" placeholder="Search">
+  </div>
+  <div *ngIf="this.events">
+    <app-card *ngFor="let event of events" [event]="event" class="w-full"></app-card>
+  </div>
+  <div *ngIf="this.events">
+    <app-card-company *ngFor="let company of companies" [company]="company" class="w-full"></app-card-company>
+  </div>
+  <div *ngIf="!this.events || this.events.length === 0 && !this.companies || this.companies.length === 0" class="h-1">
+    <p class="text-center">No events found</p>
+  </div>
+</div>
