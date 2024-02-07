@@ -6,12 +6,12 @@ import { catchError, of, tap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
-  
+
   })
 
 export class EventService extends MainService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     super(http);
   }
 
@@ -109,5 +109,11 @@ export class EventService extends MainService {
     );
   }
 
-
+  async search(searchValue: string): Promise<Event[]> {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${this.fullApiUrl}/events/search`, {search : searchValue } ,{ headers : this.headers }).subscribe((data) => {
+        resolve(data as Event[]);
+      });
+    });
+  }
 }

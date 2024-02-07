@@ -1,0 +1,19 @@
+<div class="w-full sm:flex">
+  <ul role="list" class="divide-y divide-gray-100">
+    <li class="p-5 flex justify-between gap-x-6 py-5">
+      <div class="flex min-w-0 gap-x-4">
+        <div class="flex-none rounded-full bg-gray-50 align-middle">
+          <fa-icon [icon]="faBuildingMemo"></fa-icon>
+        </div>
+        <div class="min-w-0 flex-auto">
+          <p class="text-sm font-semibold leading-6 text-gray-900">{{ company.name }}</p>
+          <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ company.description }}</p>
+        </div>
+      </div>
+      <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
+        <p class="text-sm leading-6 text-gray-900">{{ this.getCompanyCategoriesAsString() }}</p>
+        <p class="mt-1 text-xs leading-5 text-gray-500 float-right">{{ (company.creationDate | date:'d/M/y') }}</p>
+      </div>
+    </li>
+  </ul>
+</div>
