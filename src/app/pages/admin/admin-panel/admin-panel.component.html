@@ -1,0 +1,19 @@
+<button (click)="backClicked()"
+    class="flex text-red-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>
+</button>
+
+<div class="flex flex-col items-center justify-around">
+    <a routerLink="/admin/users" class="flex justify-center w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+        Gérer les utilisateurs
+    </a>
+    <a routerLink="/admin/company/validate" class="flex justify-center w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+        Valider les entreprises
+    </a>
+    <a routerLink="/admin/tags" class="flex justify-center w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+        Gérer les tags
+    </a>
+    <a routerLink="/admin/events" class="flex justify-center w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+        Gérer les événements
+    </a>
+</div>

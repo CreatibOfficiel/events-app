@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
 import { CompanyService } from '../../../../core/company.service';
 import { Company } from '../../../../models/company.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-validate-company',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './validate-company.component.html',
   styleUrl: './validate-company.component.css'
 })
 export class ValidateCompanyComponent {
   
   companiesToValidate: Company[] = [];
+  faArrowLeft = faArrowLeft;
   
   constructor(
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private _location: Location
     ) { }
     
     ngOnInit(): void {
@@ -49,6 +53,10 @@ export class ValidateCompanyComponent {
       this.getCompaniesToValidate().then((companies) => {
         this.companiesToValidate = companies;
       });
+    }
+
+    backClicked() {
+      this._location.back();
     }
     
   }

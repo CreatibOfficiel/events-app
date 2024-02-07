@@ -8,7 +8,7 @@
   <div
     class="w-full md:flex-row md:justify-around border-r border-b border-l border-gray-400 md:border-l-0 lg:border-t bg-white rounded-b md:rounded-b-none md:rounded-r p-4 flex flex-col justify-between leading-normal">
     <div class="mb-8 sm:max-w-sm lg:max-w-xl">
-      <div class="text-gray-900 font-bold text-xl mb-2">{{ event.name }}</div>
+      <a [routerLink]="['/event/detail', event.id]" class="text-gray-900 font-bold text-xl mb-2">{{ event.name }}</a>
       <p class="text-gray-700 text-base hidden sm:block">{{ (event.description.length > 200) ? ( event.description | slice:0:200) + '...': event.description}}</p>
     </div>
     <div class="flex items-center">

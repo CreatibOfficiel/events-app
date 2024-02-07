@@ -2,6 +2,11 @@
     <p class="font-bold p-2">Error while getting Event</p>
 </div>
 
+<button (click)="backClicked()"
+    class="flex text-red-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>
+</button>
+
 <div *ngIf="selectedEvent != null" class="flex flex-col w-full items-center">
     <img class="w-9/12 mb-5" src="https://via.placeholder.com/1920x1080.png?text=No+Image+Found" alt="No Image Found">
     
