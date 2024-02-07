@@ -12,7 +12,7 @@ import { Event } from '../../../models/event.model';
 })
 export class CardComponent {
   @Input() event: Event = new Event(0, 'default name', 'default desc', new Date(), new Date(), new Date(), '', '', [], [], []);
-  
+
   isMobile: boolean = false;
 
   constructor(private responsive: BreakpointObserver) { }

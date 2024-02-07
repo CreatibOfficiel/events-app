@@ -79,8 +79,17 @@ export class EditUserComponent {
       return;
     }
 
-    this.userService.updateUser(this.selectedUser!.getId(), this.editUserForm.value).subscribe((res) => {
-      console.log(res);
-    });
+    if (this.selectedUser?.email === this.editUserForm.value.email) {
+      this.editUserForm.removeControl('email');
+    }
+
+    if (this.selectedUser !== undefined) {
+      this.userService.updateUser(this.selectedUser.id ?? 0, this.editUserForm.value).subscribe((res) => {
+        console.log(res);
+      });
+    } else {
+      console.log("User is undefined");
+    }
+    
   }
 }

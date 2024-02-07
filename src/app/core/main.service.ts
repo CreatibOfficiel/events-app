@@ -12,6 +12,7 @@ export class MainService {
   public headers = this.getHeaders();
   public headersPost = this.postHeaders();
   public headersPostNoToken = this.postHeadersNoToken();
+  public headersPatch = this.patchHeaders();
 
   constructor(
     http: HttpClient
@@ -32,7 +33,16 @@ export class MainService {
     return new HttpHeaders()
       .set('Authorization', `Bearer ${this.getToken()}`)
       .set('Content-Type', 'application/json')
-      .set('Accept', 'application/json');
+      .set('Accept', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
+  }
+
+  public patchHeaders(): HttpHeaders {
+    return new HttpHeaders()
+      .set('Authorization', `Bearer ${this.getToken()}`)
+      .set('Content-Type', 'application/merge-patch+json')
+      .set('Accept', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
   }
 
   public postHeadersNoToken(): HttpHeaders {

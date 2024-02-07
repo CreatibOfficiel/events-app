@@ -1,0 +1,74 @@
+<div class="bg-grey-200 flex items-center justify-center grow">
+
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <div class="flex items-center justify-center mb-6">
+            <!-- Ajouter le logo de votre application ici -->
+            <img src="/assets/img/logo.png" alt="Logo" class="w-48 h-48">
+        </div>
+
+        <form [formGroup]="editEventForm">
+            <div class="mb-4">
+                <label for="name" class="text-sm text-gray-600">Nom</label>
+                <input type="text" id="name" formControlName="name"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="editEventForm.get('name')?.hasError('required') && editEventForm.get('name')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> Le nom est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="image" class="text-sm text-gray-600">Image</label>
+                <input type="file" id="image" formControlName="image"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+            </div>
+
+            <div class="mb-4">
+                <label for="description" class="text-sm text-gray-600">Description</label>
+                <textarea type="text" id="description" formControlName="description"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                </textarea>
+                <div *ngIf="editEventForm.get('description')?.hasError('required') && editEventForm.get('description')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> La description est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="startDateTime" class="text-sm text-gray-600">Date de début</label>
+                <input type="date" id="startDateTime" formControlName="startDateTime"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="editEventForm.get('startDateTime')?.hasError('required') && editEventForm.get('startDateTime')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> La date de début est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="endDateTime" class="text-sm text-gray-600">Date de fin</label>
+                <input type="date" id="endDateTime" formControlName="endDateTime"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="editEventForm.get('endDateTime')?.hasError('required') && editEventForm.get('endDateTime')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> La date de fin est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="location" class="text-sm text-gray-600">Emplacement</label>
+                <input type="text" id="location" formControlName="location"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="editEventForm.get('location')?.hasError('required') && editEventForm.get('location')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> L'emplacement est obligatoire
+                </div>
+            </div>
+
+            <button (click)="updateEvent()"
+                class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 {{ editEventForm.invalid ? 'bg-gray-400 hover:bg-gray-400' : '' }}" [disabled]="editEventForm.invalid">
+                Modifier l'évènement
+            </button>
+        </form>
+
+    </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import { NavbarMobileComponent } from './shared/components/navbar-mobile/navbar-mobile.component';
 import { NavbarDesktopComponent } from './shared/components/navbar-desktop/navbar-desktop.component';
 import { BreakpointObserver, Breakpoints, LayoutModule } from '@angular/cdk/layout';
@@ -13,11 +13,12 @@ import { BreakpointObserver, Breakpoints, LayoutModule } from '@angular/cdk/layo
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit{
-  
+
   isMobile: boolean = false;
   //title = 'Front';
 
-  constructor(private responsive: BreakpointObserver) { }
+  constructor(private responsive: BreakpointObserver,
+              private router: Router) { }
 
   ngOnInit() {
     this.responsive.observe([
@@ -30,5 +31,9 @@ export class AppComponent implements OnInit{
       }
     });
   }
-  
+
+  isLoginPage(): boolean {
+    return this.router.url === '/login';
+  }
+
 }

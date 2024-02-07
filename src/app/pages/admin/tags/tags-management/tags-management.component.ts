@@ -22,7 +22,7 @@ export class TagsManagementComponent {
       private formBuilder: FormBuilder
     ) { 
       this.tagForm = this.formBuilder.group({
-        name: ['', [Validators.required, this.uniqueNameValidator()]]
+        name: ['', [Validators.required]]
       });
     }
 
@@ -47,11 +47,15 @@ export class TagsManagementComponent {
         name: this.tagForm.value.name
       };
 
+      console.log("createTag");
+
       if (this.tagForm.invalid) {
+        console.log("invalid form");
         return;
       }
 
       this.tagService.createTag(tag).subscribe((res) => {
+        console.log(res);
         this.getTags();
       });
     }
@@ -64,15 +68,14 @@ export class TagsManagementComponent {
 
     uniqueNameValidator() {
       return (control: any) => {
-        const name = control.value;
-        let found = false;
-        this.tags.forEach((tag) => {
-          if (tag.name === name) {
-            found = true;
+        if (this.tags && this.tags.length > 0) {
+          if (this.tags.map(tag => tag.name).includes(control.value)) {
+            return { uniqueName: true };
           }
-        });
-        return found ? { nameExists: true } : null;
+        }
+        return null;
       };
     }
+    
 
 }

@@ -1,5 +1,7 @@
-<app-navbar-desktop *ngIf="!isMobile"></app-navbar-desktop>
+<app-navbar-desktop *ngIf="!isMobile && !isLoginPage()"></app-navbar-desktop>
 
-<router-outlet></router-outlet>
+<div class="pb-16">
+    <router-outlet></router-outlet>
+</div>
 
-<app-navbar-mobile *ngIf="isMobile"></app-navbar-mobile>
+<app-navbar-mobile *ngIf="isMobile && !isLoginPage()"></app-navbar-mobile>

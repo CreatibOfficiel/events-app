@@ -39,7 +39,7 @@
 
             <div class="mb-4">
                 <label for="companies" class="text-sm text-gray-600">Association</label>
-                <select name="companies" id="companies" formControlName="companies"
+                <select name="companies" id="companies" formControlName="company"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                     <option *ngFor="let company of companies" value="{{company.id}}">{{ company.name }}</option>
                 </select>

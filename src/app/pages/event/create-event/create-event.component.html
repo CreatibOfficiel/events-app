@@ -1,0 +1,91 @@
+<div class="bg-grey-200 flex items-center justify-center grow">
+
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <div class="flex items-center justify-center mb-6">
+            <!-- Ajouter le logo de votre application ici -->
+            <img src="/assets/img/logo.png" alt="Logo" class="w-48 h-48">
+        </div>
+
+        <form [formGroup]="eventForm">
+            <div class="mb-4">
+                <label for="name" class="text-sm text-gray-600">Nom</label>
+                <input type="text" id="name" formControlName="name"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="eventForm.get('name')?.hasError('required') && eventForm.get('name')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> Le nom est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="file" class="text-sm text-gray-600">Image</label>
+                <input type="file" id="file" formControlName="file" accept=".jpg, .jpeg, .png"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+            </div>
+
+            <div class="mb-4">
+                <label for="description" class="text-sm text-gray-600">Description</label>
+                <textarea type="text" id="description" formControlName="description"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                </textarea>
+                <div *ngIf="eventForm.get('description')?.hasError('required') && eventForm.get('description')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> La description est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="startDateTime" class="text-sm text-gray-600">Date de début</label>
+                <input type="date" id="startDateTime" formControlName="startDateTime"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="eventForm.get('startDateTime')?.hasError('required') && eventForm.get('startDateTime')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> La date de début est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="endDateTime" class="text-sm text-gray-600">Date de fin</label>
+                <input type="date" id="endDateTime" formControlName="endDateTime"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="eventForm.get('endDateTime')?.hasError('required') && eventForm.get('endDateTime')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> La date de fin est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="location" class="text-sm text-gray-600">Emplacement</label>
+                <input type="text" id="location" formControlName="location"
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <div *ngIf="eventForm.get('location')?.hasError('required') && eventForm.get('location')?.touched"
+                    class="alert alert-danger text-sm text-red-600" role="alert">
+                    <strong>Attention !</strong> L'emplacement est obligatoire
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="tags" class="text-sm text-gray-600">Tags</label>
+                <mat-select name="tags" id="tags" formControlName="tags" multiple
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <mat-option *ngFor="let tag of tags" [value]="tag.id">{{ tag.name }}</mat-option>
+                </mat-select>
+            </div>
+            
+            <div class="mb-4">
+                <label for="organizers" class="text-sm text-gray-600">Organisateurs</label>
+                <mat-select name="organizers" id="organizers" formControlName="organizers" multiple
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <mat-option *ngFor="let organizer of organizers" [value]="organizer.id">{{ organizer.name }}</mat-option>
+                </mat-select>
+            </div>
+
+
+            <button (click)="createEvent()"
+                class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 {{ eventForm.invalid ? 'bg-gray-400 hover:bg-gray-400' : '' }}" [disabled]="eventForm.invalid">
+                Créer l'évènement
+            </button>
+        </form>
+
+    </div>
+</div>

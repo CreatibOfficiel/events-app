@@ -51,18 +51,18 @@ export class EditCompanyComponent {
                 this.showCategories = true;
               } else {
                 this.showCategories = false;
-      
+                
                 this.editCompanyForm.get('categories')?.setValue('');
                 this.editCompanyForm.get('categories')?.clearValidators();
               }
-      
+              
               this.editCompanyForm.get('categories')?.setValidators(this.categoriesValidator(this.editCompanyForm.get('type')!));
               this.editCompanyForm.get('categories')?.updateValueAndValidity();
             });
           }
           );
         });
-      }
+    }
       
       ngOnInit(): void {
         this.getCategories();
@@ -75,63 +75,63 @@ export class EditCompanyComponent {
           (data: CompanyCategory[]) => {
             this.companyCategories = data;
           }
-          );
+        );
+      }
+        
+      async getSelectedCompany(id: number): Promise<Company|null> {
+        let company=  await this.companyService.getCompanyById(id);
+        
+        if (company !== null) {
+          return company;
         }
         
-        async getSelectedCompany(id: number): Promise<Company|null> {
-          let company=  await this.companyService.getCompanyById(id);
-          
-          if (company !== null) {
-            return company;
+        return null;
+      }
+      
+      findtruc(test : string) {
+        return this.errorManager.find((element) => element.propertyPath === test);
+      }
+      
+      updateCompany() {
+        
+        if (this.editCompanyForm.invalid) {
+          return;
+        }
+        
+        this.companyService.editCompany(this.selectedCompany?.id as number, this.editCompanyForm.value).then(
+          (data) => {
+            console.log(data);
           }
-          
+        );
+      }
+        
+      onSubmit() {
+        if (this.editCompanyForm?.invalid) {
+          return;
+        }
+        const formData = this.editCompanyForm?.value;
+      }
+      
+      setDefaultValues() {
+        console.log(this.selectedCompany)
+        this.editCompanyForm.patchValue({
+          name: this.selectedCompany?.name,
+          type: this.selectedCompany?.type,
+          categories: this.selectedCompany?.categories,
+          description: this.selectedCompany?.description,
+          creationDate: this.selectedCompany?.creationDate,
+          location: this.selectedCompany?.location,
+          validated: this.selectedCompany?.validated
+        });
+      }
+      
+      categoriesValidator(typeControl: AbstractControl): ValidatorFn {
+        return (control: AbstractControl): { [key: string]: any } | null => {
+          if (typeControl.value === 'Entreprise' && !control.value) {
+            return { 'categoriesRequired': true };
+          }
           return null;
-        }
-        
-        findtruc(test : string) {
-          return this.errorManager.find((element) => element.propertyPath === test);
-        }
-        
-        updateCompany() {
-
-          if (this.editCompanyForm.invalid) {
-            return;
-          }
-          
-          this.companyService.editCompany(this.selectedCompany?.id as number, this.editCompanyForm.value).then(
-            (data) => {
-              console.log(data);
-            }
-            );
-          }
-          
-          onSubmit() {
-            if (this.editCompanyForm?.invalid) {
-              return;
-            }
-            const formData = this.editCompanyForm?.value;
-          }
-          
-          setDefaultValues() {
-            console.log(this.selectedCompany)
-            this.editCompanyForm.patchValue({
-              name: this.selectedCompany?.name,
-              type: this.selectedCompany?.type,
-              categories: this.selectedCompany?.categories,
-              description: this.selectedCompany?.description,
-              creationDate: this.selectedCompany?.creationDate,
-              location: this.selectedCompany?.location,
-              validated: this.selectedCompany?.validated
-            });
-          }
-
-          categoriesValidator(typeControl: AbstractControl): ValidatorFn {
-            return (control: AbstractControl): { [key: string]: any } | null => {
-              if (typeControl.value === 'Entreprise' && !control.value) {
-                return { 'categoriesRequired': true };
-              }
-              return null;
-            };
-          }
-        }
+        };
+      }
+}
         
