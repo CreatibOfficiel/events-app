@@ -25,16 +25,17 @@ export class CreateEventComponent {
     private eventService: EventService,
     private companyService: CompanyService,
     private tagService: TagService
-  ) { 
+  ) {
     this.eventForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      file: new FormControl<File | undefined>(undefined, Validators.required),
-      description: ['', Validators.required],
+      name: ['YES', Validators.required],
+      // file: new FormControl<File | undefined>(undefined, Validators.required),
+      description: ['YES', Validators.required],
       startDateTime: ['', Validators.required],
       endDateTime: ['', Validators.required],
-      location: ['', Validators.required],
-      organizers: [[], Validators.required],
-      tags: [[], Validators.required],
+      location: ['YES', Validators.required],
+      organizerIds: [[], Validators.required],
+      tagIds: [[], Validators.required],
+      participantIds: [[]]
     });
   }
 
