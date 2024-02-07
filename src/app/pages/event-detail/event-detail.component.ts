@@ -1,21 +1,28 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { Event } from '../../models/event.model';
 import { EventService } from '../../core/event.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-event-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './event-detail.component.html',
   styleUrl: './event-detail.component.css'
 })
 export class EventDetailComponent {
   selectedEvent: Event|null = null;
+  faArrowLeft = faArrowLeft;
   
-  constructor(private route: ActivatedRoute, private eventService: EventService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private eventService: EventService,
+    private _location: Location
+    ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -39,6 +46,10 @@ export class EventDetailComponent {
     }
 
     return null;
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
 }

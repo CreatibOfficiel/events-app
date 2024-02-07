@@ -18,6 +18,7 @@ import { SelectUserTypeComponent } from './pages/select-user-type/select-user-ty
 import { EventManagementComponent } from './pages/admin/event/event-management/event-management.component';
 import { EditEventComponent } from './pages/admin/event/edit-event/edit-event.component';
 import { CreateEventComponent } from './pages/event/create-event/create-event.component';
+import { AdminPanelComponent } from './pages/admin/admin-panel/admin-panel.component';
 
 
 export const routes: Routes = [
@@ -38,5 +39,6 @@ export const routes: Routes = [
     { path: 'select-user-type', component: SelectUserTypeComponent },
     { path: 'admin/events', component: EventManagementComponent, canActivate: [authGuard]},
     { path: 'admin/event/edit/:id', component: EditEventComponent, canActivate: [authGuard] },
-    { path: 'event/create', component: CreateEventComponent, canActivate: [authGuard]}
+    { path: 'event/create', component: CreateEventComponent, canActivate: [authGuard]},
+    { path: 'admin/panel', component: AdminPanelComponent, canActivate: [authGuard]}
 ];

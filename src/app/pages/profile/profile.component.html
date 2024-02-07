@@ -70,6 +70,11 @@
                         Mode entreprise
                     </button>
 
+                    <a *ngIf="isAdmin" routerLink="/admin/panel"
+                        class="flex justify-center w-full text-green-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+                        Mode admin
+                    </a>
+
                     <button
                         class="block w-full text-red-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
                         Se deconnecter

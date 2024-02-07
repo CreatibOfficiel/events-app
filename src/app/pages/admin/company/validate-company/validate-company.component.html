@@ -1,3 +1,8 @@
+<button (click)="backClicked()"
+    class="flex text-red-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>
+</button>
+
 <div class="bg-grey-200 flex flex-col items-center justify-center  grow">
     
     <div *ngFor="let company of companiesToValidate" class="w-full p-6 flex justify-between bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

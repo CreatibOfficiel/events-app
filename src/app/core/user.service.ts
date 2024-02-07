@@ -127,4 +127,17 @@ export class UserService extends MainService{
     }
   }
 
+  getCurrentUserRoles() {
+    return this.http.get(`${this.fullApiUrl}/users/getRoles`, { headers : this.headers }).pipe(
+      tap((res: any) => {
+        console.log(res);
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
 }
