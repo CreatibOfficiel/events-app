@@ -22,7 +22,7 @@ export class CalendarComponent {
 
   currentDay: Date = new Date();
   month: number = this.currentDay.getMonth() + 1;
-  monthString = this.currentDay.toLocaleString('default', { month: 'long' });
+  monthString = this.currentDay.toLocaleString('fr-FR', { month: 'long' });
   year = this.currentDay.getFullYear();
   faAngleLeft = faAngleLeft;
   faAngleRight = faAngleRight;
@@ -72,7 +72,7 @@ export class CalendarComponent {
     nextMonth() {
       this.currentDay.setMonth(this.currentDay.getMonth() + 1);
       this.month = this.currentDay.getMonth() + 1;
-      this.monthString = this.currentDay.toLocaleString('default', { month: 'long' });
+      this.monthString = this.currentDay.toLocaleString('fr-FR', { month: 'long' });
       this.year = this.currentDay.getFullYear();
 
       this.getUserEventsForMonth(this.userId!, this.month).then((events) => {
@@ -84,7 +84,7 @@ export class CalendarComponent {
     previousMonth() {
       this.currentDay.setMonth(this.currentDay.getMonth() - 1);
       this.month = this.currentDay.getMonth() + 1;
-      this.monthString = this.currentDay.toLocaleString('default', { month: 'long' });
+      this.monthString = this.currentDay.toLocaleString('fr-FR', { month: 'long' });
       this.year = this.currentDay.getFullYear();
 
       this.getUserEventsForMonth(this.userId!, this.month).then((events) => {
