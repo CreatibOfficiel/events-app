@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {UserService} from "../../core/user.service";
 import {User} from "../../models/user.model";
 import {NgIf} from "@angular/common";
-import { RouterLink } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
+import {AuthenticationService} from "../../core/authentication.service";
 
 @Component({
   selector: 'app-profile',
@@ -21,12 +22,21 @@ export class ProfileComponent {
     isAdmin: boolean = false;
 
     constructor(
-      private userService: UserService
+      private userService: UserService,
+      private authService: AuthenticationService,
+      private router: Router,
+      private cdr: ChangeDetectorRef
     ) {}
 
     ngOnInit(): void {
-      this.userData = this.userService.getUser();
       this.getUserRoles();
+      this.getUserData();
+      this.cdr.detectChanges();
+    }
+
+    async getUserData() {
+      this.userData = await this.userService.getCurrentUser();
+      this.cdr.detectChanges();
     }
 
     getUserRoles(): void {
@@ -35,4 +45,14 @@ export class ProfileComponent {
         this.isAdmin = this.userRole.includes("ROLE_ADMIN");
       });
     }
+
+    logout() {
+      this.authService.logout();
+      this.router.navigate(['/login']);
+    }
+
+
+  getFullName(): string {
+    return `${this.userData.firstname} ${this.userData.lastname}`;
+  }
 }

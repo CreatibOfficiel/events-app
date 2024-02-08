@@ -25,11 +25,6 @@ export class UserService extends MainService{
     return !!this.token;
   }
 
-  getUser() : User {
-    console.log(this.user);
-    return this.user;
-  }
-
   getUserChelou(): any {
     return this.http.get(`${this.fullApiUrl}/users`, { headers : this.headers }).pipe(
       tap((res: any) => {
@@ -54,23 +49,45 @@ export class UserService extends MainService{
     );
   }
 
-  getCurrentUser(token?:string): any {
-    return this.http.get(`${this.fullApiUrl}/users/getUser`, {
-      headers : token ? new HttpHeaders()
-        .set('Authorization', `Bearer ${token}`)
-        .set('Content-Type', 'application/json')
-        .set('Accept', 'application/json')
-        : this.headers
-    }).pipe(
-      tap((res: any) => {
-        return res;
-      }),
-      catchError(err => {
-        console.log(err);
-        return of(false);
-      })
-    );
+  // getCurrentUser(token?:string): any {
+  //   return this.http.get(`${this.fullApiUrl}/users/getUser`, {
+  //     headers : token ? new HttpHeaders()
+  //       .set('Authorization', `Bearer ${token}`)
+  //       .set('Content-Type', 'application/json')
+  //       .set('Accept', 'application/json')
+  //       : this.headers
+  //   }).pipe(
+  //     tap((res: any) => {
+  //       return res;
+  //     }),
+  //     catchError(err => {
+  //       console.log(err);
+  //       return of(false);
+  //     })
+  //   );
+  // }
+
+  async getCurrentUser(token?:string): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.fullApiUrl}/users/getUser`, {
+        headers : token ? new HttpHeaders()
+          .set('Authorization', `Bearer ${token}`)
+          .set('Content-Type', 'application/json')
+          .set('Accept', 'application/json')
+          : this.headers
+      }).subscribe((data) => {
+        resolve(data as User);
+      });
+    });
   }
+
+  // async search(searchValue: string): Promise<Event[]> {
+  //   return new Promise((resolve, reject) => {
+  //     this.http.post(`${this.fullApiUrl}/events/search`, {search : searchValue } ,{ headers : this.headers }).subscribe((data) => {
+  //       resolve(data as Event[]);
+  //     });
+  //   });
+  // }
 
   getAllUsers() {
     return this.http.get(`${this.fullApiUrl}/users`, { headers : this.headers }).pipe(

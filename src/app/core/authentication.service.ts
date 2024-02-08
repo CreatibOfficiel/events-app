@@ -68,8 +68,6 @@ export class AuthenticationService extends MainService{
   }
 
   private setCurrentUser(token: string) {
-    this.userService.getCurrentUser(token).subscribe((res: any) => {
-      this.userService.setCurrentUser(res);
-    });
+    this.userService.setCurrentUser(this.userService.getCurrentUser(token));
   }
 }

@@ -17,10 +17,6 @@ export class User {
         this.company = company;
     }
 
-    getFullName(): string {
-        return `${this.getFirstName()} ${this.getLastName()}`;
-    }
-
     getCompany(): Company | null | undefined {
         return this.isCompany() ? this.company : null;
     }
