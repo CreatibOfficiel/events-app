@@ -4,6 +4,9 @@
   "newProjectRoot": "projects",
   "projects": {
     "events-app": {
+      "i18n":{
+        "sourceLocale": "fr"
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
