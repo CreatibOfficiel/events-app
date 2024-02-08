@@ -114,7 +114,7 @@ export class UserService extends MainService{
   }
 
   updateUser(userId: number, user: any) {
-    return this.http.patch(`${this.fullApiUrl}/users/${userId}`, user, { headers : this.headers }).pipe(
+    return this.http.patch(`${this.fullApiUrl}/users/${userId}`, user, { headers : this.patchHeaders() }).pipe(
       tap((res: any) => {
         return res;
       }),
