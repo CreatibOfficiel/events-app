@@ -2,19 +2,19 @@ import {ChangeDetectorRef, Component} from '@angular/core';
 import {Router} from "@angular/router";
 import { Event } from '../../models/event.model';
 import {FormsModule} from "@angular/forms";
-import {CardComponent} from "../../shared/components/card/card.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {EventService} from "../../core/event.service";
 import {Company} from "../../models/company.model";
 import {CardCompanyComponent} from "../../shared/components/card-company/card-company.component";
 import {CompanyService} from "../../core/company.service";
+import { MiniCardComponent } from '../../shared/components/mini-card/mini-card.component';
 
 @Component({
   selector: 'app-search',
   standalone: true,
   imports: [
     FormsModule,
-    CardComponent,
+    MiniCardComponent,
     NgForOf,
     NgIf,
     CardCompanyComponent

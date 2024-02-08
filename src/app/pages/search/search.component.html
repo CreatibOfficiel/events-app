@@ -4,7 +4,7 @@
            class="w-screen h-10 px-3 text-gray-700 border rounded-lg focus:outline-1" placeholder="Rechecher">
   </div>
   <div *ngIf="this.events">
-    <app-card *ngFor="let event of events" [event]="event" class="w-full"></app-card>
+    <app-mini-card *ngFor="let event of events" [event]="event" [showOrganizer]="true" class="w-full"></app-mini-card>
   </div>
   <div *ngIf="this.events">
     <app-card-company *ngFor="let company of companies" [company]="company" class="w-full"></app-card-company>

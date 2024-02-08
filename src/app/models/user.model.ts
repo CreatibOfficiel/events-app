@@ -7,14 +7,16 @@ export class User {
     firstname?: string;
     lastname?: string;
     company?: Company;
+    roles?: string[];
 
-    constructor(id?: number, firstName?: string, lastName?: string, email?: string, password?: string, company?: Company) {
+    constructor(id?: number, firstName?: string, lastName?: string, email?: string, password?: string, company?: Company, roles?: string[]) {
         this.id = id;
         this.firstname = firstName;
         this.lastname = lastName;
         this.email = email;
         this.password = password;
         this.company = company;
+        this.roles = roles;
     }
 
     getCompany(): Company | null | undefined {
@@ -39,5 +41,9 @@ export class User {
 
     getLastName(): string {
         return this.lastname || '';
+    }
+
+    isAdmin(): boolean {
+        return this.roles!.includes('ROLE_ADMIN');
     }
 }

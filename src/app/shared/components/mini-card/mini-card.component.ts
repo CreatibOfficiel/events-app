@@ -16,4 +16,8 @@ export class MiniCardComponent {
 
   constructor() { }
 
+  ngOnInit() {
+    console.log(this.event);
+  }
+
 }

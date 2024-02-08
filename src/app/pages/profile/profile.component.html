@@ -11,9 +11,9 @@
                 </div>-->
               <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ this.getFullName() }}</h1>
               <div *ngIf="userData.company">
-                  <h3 class="text-gray-600 font-lg text-semibold leading-6">{{ userData.company?.type }}</h3>
+                  <h3 class="text-gray-600 font-lg text-semibold leading-6">{{ userData.company.type }}</h3>
                   <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">
-                    {{ userData.company?.description }}
+                    {{ userData.company.description }}
                   </p>
                 </div>
 
@@ -60,10 +60,10 @@
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <button routerLink="/company/panel"
-                        class="block w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+                    <a *ngIf="isCompany" routerLink="/company/panel"
+                        class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
                         Mode entreprise
-                    </button>
+                    </a>
 
                     <a *ngIf="isAdmin" routerLink="/admin/panel"
                         class="flex justify-center w-full text-green-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">

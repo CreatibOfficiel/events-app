@@ -40,7 +40,7 @@ export class CardCompanyComponent {
   }
 
   getCompanyCategoriesAsString(): string {
-    console.log(this.company);
+    //console.log(this.company);
     let categoriesAsString = '';
     this.company.categories.forEach((category: CompanyCategory) => {
       categoriesAsString += category.name;

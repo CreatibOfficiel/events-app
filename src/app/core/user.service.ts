@@ -25,6 +25,10 @@ export class UserService extends MainService{
     return !!this.token;
   }
 
+  isCompany(): boolean {
+    return this.user.isCompany();
+  }
+
   getUserChelou(): any {
     return this.http.get(`${this.fullApiUrl}/users`, { headers : this.headers }).pipe(
       tap((res: any) => {

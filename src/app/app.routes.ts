@@ -21,6 +21,8 @@ import { CreateEventComponent } from './pages/event/create-event/create-event.co
 import { AdminPanelComponent } from './pages/admin/admin-panel/admin-panel.component';
 import { CompanyDetailComponent } from './pages/company/company-detail/company-detail.component';
 import {CompanyPanelComponent} from "./pages/company-mode/company-panel/company-panel.component";
+import { adminGuard } from './guards/admin.guard';
+import { companyGuard } from './guards/company.guard';
 
 
 export const routes: Routes = [
@@ -32,18 +34,19 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'event/detail/:id', component: EventDetailComponent, canActivate: [authGuard] },
     { path: 'company/create', component: CreateCompanyComponent, canActivate: [authGuard] },
-    { path: 'company/edit/:id', component: EditCompanyComponent, canActivate: [authGuard]},
-    { path: 'admin/company/validate', component: ValidateCompanyComponent, canActivate: [authGuard] },
-    { path: 'admin/tags', component: TagsManagementComponent, canActivate: [authGuard] },
-    { path: 'admin/users', component: UserManagementComponent, canActivate: [authGuard]},
-    { path: 'admin/user/edit/:id', component: EditUserComponent, canActivate: [authGuard] },
+    { path: 'company/edit/:id', component: EditCompanyComponent, canActivate: [authGuard, companyGuard]},
     { path: 'select-tags', component: SelectTagsComponent },
     { path: 'select-user-type', component: SelectUserTypeComponent },
-    { path: 'admin/events', component: EventManagementComponent, canActivate: [authGuard]},
-    { path: 'company/panel', component: CompanyPanelComponent, canActivate: [authGuard]},
-    { path: 'company/events', component: EventManagementComponent, canActivate: [authGuard]},
-    { path: 'admin/event/edit/:id', component: EditEventComponent, canActivate: [authGuard] },
+    { path: 'company/panel', component: CompanyPanelComponent, canActivate: [authGuard, companyGuard]},
+    { path: 'company/events', component: EventManagementComponent, canActivate: [authGuard, companyGuard]},
     { path: 'event/create', component: CreateEventComponent, canActivate: [authGuard]},
-    { path: 'admin/panel', component: AdminPanelComponent, canActivate: [authGuard]},
     { path: 'company/detail/:id', component: CompanyDetailComponent, canActivate: [authGuard] },
+    { path: 'admin/company/validate', component: ValidateCompanyComponent, canActivate: [authGuard, adminGuard] },
+    { path: 'admin/tags', component: TagsManagementComponent, canActivate: [authGuard, adminGuard] },
+    { path: 'admin/users', component: UserManagementComponent, canActivate: [authGuard, adminGuard]},
+    { path: 'admin/user/edit/:id', component: EditUserComponent, canActivate: [authGuard, adminGuard] },
+    { path: 'admin/event/edit/:id', component: EditEventComponent, canActivate: [authGuard, adminGuard] },
+    { path: 'admin/panel', component: AdminPanelComponent, canActivate: [authGuard, adminGuard]},
+    { path: 'admin/events', component: EventManagementComponent, canActivate: [authGuard, adminGuard]},
+
 ];

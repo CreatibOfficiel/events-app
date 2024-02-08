@@ -20,6 +20,7 @@ export class ProfileComponent {
     userData: User = new User();
     userRole: string[] = [];
     isAdmin: boolean = false;
+    isCompany: boolean = false;
 
     constructor(
       private userService: UserService,
@@ -31,6 +32,7 @@ export class ProfileComponent {
     ngOnInit(): void {
       this.getUserRoles();
       this.getUserData();
+      this.isCompany = this.userService.isCompany();
       this.cdr.detectChanges();
     }
 
