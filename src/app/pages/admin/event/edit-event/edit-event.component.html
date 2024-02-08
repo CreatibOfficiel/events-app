@@ -17,11 +17,11 @@
                 </div>
             </div>
 
-            <div class="mb-4">
-                <label for="image" class="text-sm text-gray-600">Image</label>
-                <input type="file" id="image" formControlName="image"
-                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-            </div>
+<!--            <div class="mb-4">-->
+<!--                <label for="image" class="text-sm text-gray-600">Image</label>-->
+<!--                <input type="file" id="image" formControlName="image"-->
+<!--                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">-->
+<!--            </div>-->
 
             <div class="mb-4">
                 <label for="description" class="text-sm text-gray-600">Description</label>
@@ -37,7 +37,7 @@
             <div class="mb-4">
                 <label for="startDateTime" class="text-sm text-gray-600">Date de début</label>
                 <input type="date" id="startDateTime" formControlName="startDateTime"
-                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                       class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" value="{{editEventForm.get('startDateTime')?.value | date:'yyyy-MM-dd'}}">
                 <div *ngIf="editEventForm.get('startDateTime')?.hasError('required') && editEventForm.get('startDateTime')?.touched"
                     class="alert alert-danger text-sm text-red-600" role="alert">
                     <strong>Attention !</strong> La date de début est obligatoire
@@ -47,7 +47,7 @@
             <div class="mb-4">
                 <label for="endDateTime" class="text-sm text-gray-600">Date de fin</label>
                 <input type="date" id="endDateTime" formControlName="endDateTime"
-                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" value="{{editEventForm.get('endDateTime')?.value | date:'yyyy-MM-dd'}}">
                 <div *ngIf="editEventForm.get('endDateTime')?.hasError('required') && editEventForm.get('endDateTime')?.touched"
                     class="alert alert-danger text-sm text-red-600" role="alert">
                     <strong>Attention !</strong> La date de fin est obligatoire
