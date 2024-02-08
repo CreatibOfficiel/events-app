@@ -2,7 +2,6 @@
   <div
     class="h-fit w-full sm:h-auto sm:w-56 flex-none bg-cover rounded-t md:rounded-t-none md:rounded-l text-center overflow-hidden"
     title="Woman holding a mug">
-    <!--<img src="https://localhost:8000{{ event.image }}" class="w-full" alt="test image">-->
     <img [src]="event.image ? 'https://localhost:8000' + event.image : 'https://picsum.photos/200'" class="w-full" alt="events image">
   </div>
 
@@ -10,6 +9,9 @@
     class="w-full md:flex-row md:justify-around border-r border-b border-l border-gray-400 md:border-l-0 lg:border-t bg-white rounded-b md:rounded-b-none md:rounded-r p-4 flex flex-col justify-between leading-normal">
     <div class="mb-8 sm:max-w-sm lg:max-w-xl">
       <a [routerLink]="['/event/detail', event.id]" class="text-gray-900 font-bold text-xl mb-2">{{ event.name }}</a>
+      <a class="ml-1.5" (click)="followEvent(event.id)">
+        <fa-icon [icon]="faHeart" class="mr-1.5"></fa-icon>
+      </a>
       <p class="text-gray-700 text-base hidden sm:block">{{ (event.description.length > 200) ? ( event.description | slice:0:200) + '...': event.description}}</p>
     </div>
     <div class="flex items-center">
