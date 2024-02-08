@@ -7,7 +7,7 @@
     <app-mini-card *ngFor="let event of events" [event]="event" [showOrganizer]="true" class="w-full"></app-mini-card>
   </div>
   <div *ngIf="this.events">
-    <app-card-company *ngFor="let company of companies" [company]="company" class="w-full"></app-card-company>
+    <app-card-company *ngFor="let company of companies" [company]="company" class="w-full" [routerLink]="['/company/detail', company.id]"></app-card-company>
   </div>
   <div *ngIf="!this.events || this.events.length === 0 && !this.companies || this.companies.length === 0" class="h-1">
     <p class="text-center">Aucun évenement, entreprise ou BDE trouvé !</p>

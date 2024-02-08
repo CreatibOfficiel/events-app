@@ -62,7 +62,12 @@
                 <div class="flex flex-col">
                     <a *ngIf="isCompany" routerLink="/company/panel"
                         class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-                        Mode entreprise
+                        Mode entreprise/BDE
+                    </a>
+
+                    <a *ngIf="!isCompany" routerLink="/company/create"
+                        class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+                        Créer une entreprise/BDE
                     </a>
 
                     <a *ngIf="isAdmin" routerLink="/admin/panel"
