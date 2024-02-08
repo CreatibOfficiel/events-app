@@ -1,16 +1,40 @@
-<div class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-    <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
-        <a routerLink="/" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-            <fa-icon [icon]="faHouse"></fa-icon>
+<div class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200">
+    <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium justify-center-center">
+        <a routerLink="/" [ngClass]="{'m-2 rounded ring-2 ring-blue-500 relative': currentRoute === '/'}"
+            class="flex items-center justify-center">
+            <div
+                [ngClass]="{'absolute inset-0 bg-blue-500 opacity-25 flex items-center justify-center': currentRoute === '/'}">
+            </div>
+            <fa-icon [icon]="faHouse"
+                [ngClass]="{'text-blue-700': currentRoute === '/', 'text-grey-700': currentRoute !== '/'}"></fa-icon>
         </a>
-        <a routerLink="/search" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-            <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+
+        <a routerLink="/search" [ngClass]="{'m-2 rounded ring-2 ring-blue-500 relative': currentRoute === '/search'}"
+            class="flex items-center justify-center">
+            <div
+                [ngClass]="{'absolute inset-0 bg-blue-500 opacity-25 flex items-center justify-center': currentRoute === '/search'}">
+            </div>
+            <fa-icon [icon]="faMagnifyingGlass"
+                [ngClass]="{'text-blue-700': currentRoute === '/search', 'text-grey-700': currentRoute !== '/search'}"></fa-icon>
         </a>
-        <a routerLink="/calendar" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-            <fa-icon [icon]="faCalendarDays"></fa-icon>
+
+        <a routerLink="/calendar"
+            [ngClass]="{'m-2 rounded ring-2 ring-blue-500 relative': currentRoute === '/calendar'}"
+            class="flex items-center justify-center">
+            <div
+                [ngClass]="{'absolute inset-0 bg-blue-500 opacity-25 flex items-center justify-center': currentRoute === '/calendar'}">
+            </div>
+            <fa-icon [icon]="faCalendarDays"
+                [ngClass]="{'text-blue-700': currentRoute === '/calendar', 'text-grey-700': currentRoute !== '/calendar'}"></fa-icon>
         </a>
-        <a routerLink="/profile" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-            <fa-icon [icon]="faUser"></fa-icon>
+
+        <a routerLink="/profile" [ngClass]="{'m-2 rounded ring-2 ring-blue-500 relative': currentRoute === '/profile'}"
+            class="flex items-center justify-center">
+            <div
+                [ngClass]="{'absolute inset-0 bg-blue-500 opacity-25 flex items-center justify-center': currentRoute === '/profile'}">
+            </div>
+            <fa-icon [icon]="faUser"
+                [ngClass]="{'text-blue-700': currentRoute === '/profile', 'text-grey-700': currentRoute !== '/profile'}"></fa-icon>
         </a>
     </div>
 </div>

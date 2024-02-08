@@ -1,64 +1,34 @@
-<div class="container mx-auto my-5 p-5">
-    <div class="md:flex no-wrap md:-mx-2 ">
-        <!-- Left Side -->
-        <div class="w-full md:w-3/12 md:mx-2">
-            <!-- Profile Card -->
-            <div class="bg-white p-3 border-t-4 border-green-400">
-                <!--<div class="image overflow-hidden">
-                    <img class="h-auto w-full mx-auto"
-                        src="https://i.pravatar.cc/300"
-                        alt="">
-                </div>-->
-              <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ this.getFullName() }}</h1>
-              <div *ngIf="userData.company">
-                  <h3 class="text-gray-600 font-lg text-semibold leading-6">{{ userData.company.type }}</h3>
-                  <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">
-                    {{ userData.company.description }}
-                  </p>
+<div class="m-4 flex flex-col">
+    <div class="flex flex-col space-y-6">
+        <div class="shadow-lg rounded-lg bg-white p-4 flex items-center space-x-4">
+            <!-- img -->
+            <div class="flex-shrink-0">
+                <img class="h-24 w-24 rounded-full" src="https://i.pravatar.cc/300" alt="">
+            </div>
+
+            <!-- user info -->
+            <div class="flex flex-col space-y-2">
+                <div class="flex items-center space-x-2">
+                    <div class="flex flex-col w-4/5">
+                        <h1 class="text-lg font-semibold text-ellipsis overflow-hidden whitespace-nowrap">{{
+                            this.getFullName() }}</h1>
+                        <span class="text-sm text-gray-500">Mes informations</span>
+                    </div>
+                    <a href="#" class="text-blue-500">
+                        <fa-icon [icon]="faChevronRight"></fa-icon>
+                    </a>
                 </div>
 
-<!--                <ul-->
-<!--                    class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">-->
-<!--                    <li class="flex items-center py-3">-->
-<!--                        <span>Inscrit depuis</span>-->
-<!--                        <span class="ml-auto">Nov 07, 2016</span>-->
-<!--                    </li>-->
-<!--                </ul>-->
+                <span class="text-gray-500">Membre depuis {{ this.getMemberSince() }}</span>
             </div>
-            <!-- End of profile card -->
         </div>
-        <!-- Right Side -->
-        <div class="w-full md:w-9/12 mx-2 h-64">
-            <!-- Profile tab -->
-            <!-- About Section -->
-            <div class="bg-white p-3 shadow-sm rounded-sm">
-                <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
-                    <span class="text-green-500">
-                        <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                    </span>
+
+        <div class="flex justify-between space-x-4">
+            <div class="bg-gray-200 p-4 flex flex-col space-y-2 w-full rounded">
+                <div class="flex items-center justify-center bg-blue-300 p-4 rounded w-14 h-14">
+                    <fa-icon [icon]="faCalendar" class="text-2xl text-white"></fa-icon>
                 </div>
-                <div class="text-gray-700">
-                    <div class="grid md:grid-cols-2 text-sm">
-                        <div class="grid grid-cols-2">
-                            <div class="px-4 py-2 font-semibold">Prénom</div>
-                            <div class="px-4 py-2">{{ userData.firstname }}</div>
-                        </div>
-                        <div class="grid grid-cols-2">
-                            <div class="px-4 py-2 font-semibold">Nom</div>
-                            <div class="px-4 py-2">{{ userData.lastname }}</div>
-                        </div>
-                        <div class="grid grid-cols-2">
-                            <div class="px-4 py-2 font-semibold">Email.</div>
-                            <div class="px-4 py-2">
-                                <a class="text-blue-800" href="mailto:jane@example.com">{{ userData.email }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="flex flex-col">
                     <a *ngIf="isCompany" routerLink="/company/panel"
                         class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
@@ -79,10 +49,35 @@
                         class="block w-full text-red-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
                         Se deconnecter
                     </button>
+                    <h1 class="text-lg font-semibold">8</h1>
+                    <span class="text-gray-400">participations</span>
                 </div>
             </div>
-            <!-- End of about section -->
-            <!-- End of profile tab -->
+
+            <div class="bg-gray-200 p-4 flex flex-col space-y-2 w-full rounded">
+                <div class="flex items-center justify-center bg-blue-300 p-4 rounded w-14 h-14">
+                    <fa-icon [icon]="faPeopleGroup" class="text-2xl text-white"></fa-icon>
+                </div>
+
+                <div class="flex flex-col">
+                    <h1 class="text-lg font-semibold">10</h1>
+                    <span class="text-gray-400">abonnements</span>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <div class="flex flex-col mt-60">
+        <a *ngIf="isCompany" routerLink="/company/panel"
+            class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+            Mode entreprise
+        </a>
+
+        <a *ngIf="isAdmin" routerLink="/admin/panel"
+            class="flex justify-center w-full text-green-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+            Mode admin
+        </a>
+
+        <button (click)="logout()" class="bg-red-500 text-white p-4 rounded-lg">Se déconnecter</button>
     </div>
 </div>
