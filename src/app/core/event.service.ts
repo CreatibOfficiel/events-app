@@ -84,7 +84,7 @@ export class EventService extends MainService {
   }
 
   updateEvent(id: number, event: any) {
-    return this.http.patch(`${this.fullApiUrl}/events/${id}`, event, { headers : this.headersPost }).pipe(
+    return this.http.patch(`${this.fullApiUrl}/events/${id}`, event, { headers : this.headersPatch }).pipe(
       tap((res: any) => {
         console.log(res);
         return res;
