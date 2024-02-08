@@ -22,10 +22,6 @@ export class UserService extends MainService{
     return !!this.token;
   }
 
-  isCompany(): boolean {
-    return this.user.isCompany();
-  }
-
   getUserChelou(): any {
     return this.http.get(`${this.fullApiUrl}/users`, { headers : this.headers }).pipe(
       tap((res: any) => {
@@ -180,4 +176,9 @@ export class UserService extends MainService{
     );
   }
 
+  async isCurrentUserCompany(): Promise<boolean> {
+    return await this.getCurrentUser().then((user: User) => {
+      return user.company !== undefined && user.company !== null;
+    });
+  }
 }

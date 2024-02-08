@@ -6,5 +6,5 @@ export const companyGuard: CanActivateFn = (route, state) => {
   const userService = inject(UserService);
   const router = inject(Router);
 
-  return userService.isCompany() || router.parseUrl('/');
+  return userService.isCurrentUserCompany() || router.parseUrl('/');
 };
