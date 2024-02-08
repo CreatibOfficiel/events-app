@@ -15,9 +15,6 @@ export class UserService extends MainService{
   }
 
   ngOnInit() {
-    console.log('User service init');
-    console.log('User:', this.user);
-    console.log('User from local storage:', JSON.parse(localStorage.getItem('user') || '{}'));
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
   }
 
@@ -159,6 +156,14 @@ export class UserService extends MainService{
         return of(false);
       })
     );
+  }
+
+  async IsRoleAdmin(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.getCurrentUserRoles().subscribe((res: any) => {
+        resolve(res.includes("ROLE_ADMIN"));
+      });
+    });
   }
 
 }
