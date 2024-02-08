@@ -116,4 +116,30 @@ export class EventService extends MainService {
       });
     });
   }
+
+  getAllCompanyEvents(id: number) {
+    return this.http.get(`${this.fullApiUrl}/events/getOfCompany/${id}`, { headers : this.headers }).pipe(
+      tap((res: any) => {
+        console.log(res);
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  addParticipant(eventId: number) {
+    return this.http.post(`${this.fullApiUrl}/events/addParticipant/${eventId}`, {"userId":5}, { headers : this.headersPost }).pipe(
+      tap((res: any) => {
+        console.log(res);
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
 }
