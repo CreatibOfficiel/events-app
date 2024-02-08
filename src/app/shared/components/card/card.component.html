@@ -3,7 +3,7 @@
     class="h-fit w-full sm:h-auto sm:w-56 flex-none bg-cover rounded-t md:rounded-t-none md:rounded-l text-center overflow-hidden"
     title="Woman holding a mug">
     <!--<img src="https://localhost:8000{{ event.image }}" class="w-full" alt="test image">-->
-    <img src="https://picsum.photos/200" class="w-full" alt="events image">
+    <img [src]="event.image ? 'https://localhost:8000' + event.image : 'https://picsum.photos/200'" class="w-full" alt="events image">
   </div>
 
   <div
