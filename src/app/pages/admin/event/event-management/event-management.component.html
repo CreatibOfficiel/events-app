@@ -3,6 +3,10 @@
     <fa-icon [icon]="faArrowLeft"></fa-icon>
 </button>
 
+<a [routerLink]="['/event/create']" class="inline-flex mb-1.5 items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+  <fa-icon [icon]="faPlus" class="mr-1.5"></fa-icon>Nouvel événement
+</a>
+
 <div class="bg-grey-200 flex flex-col items-center justify-center grow">
 
     <div *ngFor="let event of events" class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

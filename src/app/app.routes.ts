@@ -20,6 +20,7 @@ import { EditEventComponent } from './pages/admin/event/edit-event/edit-event.co
 import { CreateEventComponent } from './pages/event/create-event/create-event.component';
 import { AdminPanelComponent } from './pages/admin/admin-panel/admin-panel.component';
 import { CompanyDetailComponent } from './pages/company/company-detail/company-detail.component';
+import {CompanyPanelComponent} from "./pages/company-mode/company-panel/company-panel.component";
 
 
 export const routes: Routes = [
@@ -39,6 +40,8 @@ export const routes: Routes = [
     { path: 'select-tags', component: SelectTagsComponent },
     { path: 'select-user-type', component: SelectUserTypeComponent },
     { path: 'admin/events', component: EventManagementComponent, canActivate: [authGuard]},
+    { path: 'company/panel', component: CompanyPanelComponent, canActivate: [authGuard]},
+    { path: 'company/events', component: EventManagementComponent, canActivate: [authGuard]},
     { path: 'admin/event/edit/:id', component: EditEventComponent, canActivate: [authGuard] },
     { path: 'event/create', component: CreateEventComponent, canActivate: [authGuard]},
     { path: 'admin/panel', component: AdminPanelComponent, canActivate: [authGuard]},

@@ -5,6 +5,7 @@ import { CommonModule, Location } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
 
 @Component({
   selector: 'app-event-management',
@@ -43,4 +44,5 @@ export class EventManagementComponent {
   }
 
 
+  protected readonly faPlus = faPlus;
 }
