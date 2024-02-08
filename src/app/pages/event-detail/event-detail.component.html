@@ -8,8 +8,8 @@
 </button>
 
 <div *ngIf="selectedEvent != null" class="flex flex-col w-full items-center">
-    <img class="w-9/12 mb-5" src="https://via.placeholder.com/1920x1080.png?text=No+Image+Found" alt="No Image Found">
-    
+    <img class="w-9/12 mb-5" [src]="selectedEvent.image ? 'https://localhost:8000' + selectedEvent.image : 'https://picsum.photos/200'" alt="No Image Found">
+
     <div class="flex flex-col items-center w-9/12 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ selectedEvent.name }}</h5>
         <p class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Le {{ selectedEvent.startDateTime | date }} à {{ selectedEvent.location }} </p>
@@ -22,6 +22,6 @@
             </a>
         </div>
     </div>
-    
+
 </div>
 
