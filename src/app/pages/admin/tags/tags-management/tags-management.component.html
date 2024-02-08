@@ -5,7 +5,7 @@
 
 <div class="bg-grey-200 flex flex-col items-center justify-start grow">
     <form [formGroup]="tagForm" class="flex justify-center w-screen pt-5">
-        <input type="text" id="newTag" class="w-1/2 px-3 py-2 mb-3 text-sm text-gray-700 placeholder-gray-300 border rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300" placeholder="Create a new tag">
+        <input type="text" id="newTag" class="w-1/2 px-3 py-2 mb-3 text-sm text-gray-700 placeholder-gray-300 border rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300" placeholder="Create a new tag" formControlName="name">
         <div *ngIf="tagForm.get('name')?.hasError('required') && tagForm.get('name')?.touched" class="alert alert-danger text-sm text-red-600" role="alert">
             <strong>Attention !</strong> Le nom est obligatoire
         </div>
@@ -16,8 +16,8 @@
             Create
         </button>
     </form>
-    
-    
+
+
     <div *ngFor="let tag of tags" class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ tag.name }}</h5>
 
@@ -29,7 +29,7 @@
                 Delete
             </button>
         </div>
-        
+
     </div>
 
 </div>
