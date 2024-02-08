@@ -20,7 +20,7 @@ export class EditEventComponent {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private eventService: EventService
-  ) { 
+  ) {
     this.editEventForm = this.formBuilder.group({
       name: ['', Validators.required],
       image: ['', Validators.required],
@@ -45,6 +45,8 @@ export class EditEventComponent {
   async getSelectedEvent(eventId: number) {
     let event = await this.eventService.getEventById(eventId);
 
+    console.log(event);
+
     if (event !== null) {
       return event;
     }
@@ -60,6 +62,8 @@ export class EditEventComponent {
     this.editEventForm.get('startDateTime')?.setValue(this.selectedEvent?.startDateTime);
     this.editEventForm.get('endDateTime')?.setValue(this.selectedEvent?.endDateTime);
     this.editEventForm.get('location')?.setValue(this.selectedEvent?.location);
+
+    console.log(this.editEventForm.value);
   }
 
   updateEvent() {
