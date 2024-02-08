@@ -30,25 +30,6 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <a *ngIf="isCompany" routerLink="/company/panel"
-                        class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-                        Mode entreprise/BDE
-                    </a>
-
-                    <a *ngIf="!isCompany" routerLink="/company/create"
-                        class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-                        Créer une entreprise/BDE
-                    </a>
-
-                    <a *ngIf="isAdmin" routerLink="/admin/panel"
-                        class="flex justify-center w-full text-green-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-                        Mode admin
-                    </a>
-
-                    <button (click)="logout()"
-                        class="block w-full text-red-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-                        Se deconnecter
-                    </button>
                     <h1 class="text-lg font-semibold">8</h1>
                     <span class="text-gray-400">participations</span>
                 </div>
@@ -70,7 +51,12 @@
     <div class="flex flex-col mt-60">
         <a *ngIf="isCompany" routerLink="/company/panel"
             class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-            Mode entreprise
+            Mode entreprise/BDE
+        </a>
+
+        <a *ngIf="!isCompany" routerLink="/company/create"
+            class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+            Créer une entreprise/BDE
         </a>
 
         <a *ngIf="isAdmin" routerLink="/admin/panel"
