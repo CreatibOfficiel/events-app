@@ -166,4 +166,18 @@ export class UserService extends MainService{
     });
   }
 
+  setCompany(userId: number, companyId: number) {
+    console.log('Setting company for user:', userId, 'with company:', companyId);
+    return this.http.post(`${this.fullApiUrl}/users/${userId}/addCompany`, {"companyId" : companyId}, { headers : this.headersPost }).pipe(
+      tap((res: any) => {
+        console.log(res);
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
 }

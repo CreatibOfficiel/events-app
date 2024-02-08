@@ -1,3 +1,7 @@
+<div *ngIf= "selectedCompany == null" class="w-full bg-red-600 flex justify-center">
+    <p class="font-bold p-2">Error while getting Company</p>
+</div>
+
 <button (click)="backClicked()"
     class="flex text-red-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
     <fa-icon [icon]="faArrowLeft"></fa-icon>

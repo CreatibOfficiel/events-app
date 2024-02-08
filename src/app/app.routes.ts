@@ -23,6 +23,7 @@ import { CompanyDetailComponent } from './pages/company/company-detail/company-d
 import {CompanyPanelComponent} from "./pages/company-mode/company-panel/company-panel.component";
 import { adminGuard } from './guards/admin.guard';
 import { companyGuard } from './guards/company.guard';
+import { alreadyCompanyGuard } from './guards/already-company.guard';
 
 
 export const routes: Routes = [
@@ -33,7 +34,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'event/detail/:id', component: EventDetailComponent, canActivate: [authGuard] },
-    { path: 'company/create', component: CreateCompanyComponent, canActivate: [authGuard] },
+    { path: 'company/create', component: CreateCompanyComponent, canActivate: [authGuard, alreadyCompanyGuard] },
     { path: 'company/edit/:id', component: EditCompanyComponent, canActivate: [authGuard, companyGuard]},
     { path: 'select-tags', component: SelectTagsComponent },
     { path: 'select-user-type', component: SelectUserTypeComponent },

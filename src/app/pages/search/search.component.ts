@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import { Event } from '../../models/event.model';
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
@@ -17,7 +17,8 @@ import { MiniCardComponent } from '../../shared/components/mini-card/mini-card.c
     MiniCardComponent,
     NgForOf,
     NgIf,
-    CardCompanyComponent
+    CardCompanyComponent,
+    RouterModule
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
