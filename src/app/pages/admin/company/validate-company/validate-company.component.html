@@ -4,29 +4,29 @@
 </button>
 
 <div class="bg-grey-200 flex flex-col items-center justify-center  grow">
-    
+
     <div *ngFor="let company of companiesToValidate" class="w-full p-6 flex justify-between bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div class="flex flex-col items-left">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ company.name }}</h5>
-        
+
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Type : {{ company.type }}</p>
-    
+
             <p *ngIf="company.categories" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Catégorie : {{company.categories }}</p>
-    
+
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Description : {{ company.description }}</p>
-    
+
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Adresse : {{ company.location }}</p>
         </div>
-        
+
         <div class="flex flex-col justify-around">
             <button (click)="validateCompany(company.id)" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Validate
+                Valider
             </button>
             <button (click)="rejectCompany(company.id)" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                Reject
+                Rejetter
             </button>
         </div>
-        
+
     </div>
 
 </div>
