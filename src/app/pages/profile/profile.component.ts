@@ -32,12 +32,12 @@ export class ProfileComponent {
     ngOnInit(): void {
       this.getUserRoles();
       this.getUserData();
-      this.isCompany = this.userService.isCompany();
       this.cdr.detectChanges();
     }
 
     async getUserData() {
       this.userData = await this.userService.getCurrentUser();
+      this.isCompany = await this.userService.isCurrentUserCompany();
       this.cdr.detectChanges();
     }
 

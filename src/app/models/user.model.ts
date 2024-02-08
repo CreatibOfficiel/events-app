@@ -19,10 +19,6 @@ export class User {
         this.roles = roles;
     }
 
-    getCompany(): Company | null | undefined {
-        return this.isCompany() ? this.company : null;
-    }
-
     isCompany(): boolean {
       return this.company !== undefined;
     }
