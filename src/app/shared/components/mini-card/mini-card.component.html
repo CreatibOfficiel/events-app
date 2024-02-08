@@ -1,0 +1,19 @@
+<div
+    class="w-full flex items-center border-b border-gray-400 lg:border-t rounded-b rounded-t flex-col justify-between leading-normal rounded-xl mt-2">
+    <div class="w-full bg-gray-400 rounded-t-xl pl-3">
+        <p class="text-gray-600 font-bold text-sm mb-2">{{ event.participants.length }} participants</p>
+    </div>
+    <div class="bg-white flex flex-col w-full pl-3 rounded-b-xl">
+        <div class="w-full">
+            <a [routerLink]="['/event/detail', event.id]" class="text-gray-900 font-bold text-lg mb-2">{{ event.name }}</a>
+        </div>
+        <div class="w-full flex flex-col">
+            <p class="text-gray-600 mt-2">{{ event.startDateTime | date:'dd/MM/yyyy HH:mm' }} - {{ event.endDateTime | date:'dd/MM/yyyy HH:mm' }}</p>
+            <p class="text-gray-700 text-base">{{ event.location }}</p>
+        </div>
+        <div *ngIf="showOrganizer" class="flex flex-col">
+        <a *ngFor="let organizer of event.organizers" [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 leading-none"> {{ organizer.name }} </a>
+        </div>
+    </div>
+</div>
+  

@@ -36,7 +36,7 @@
 
             <div class="mb-4">
                 <label for="startDateTime" class="text-sm text-gray-600">Date de début</label>
-                <input type="date" id="startDateTime" formControlName="startDateTime"
+                <input type="datetime-local" id="startDateTime" formControlName="startDateTime"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                 <div *ngIf="eventForm.get('startDateTime')?.hasError('required') && eventForm.get('startDateTime')?.touched"
                     class="alert alert-danger text-sm text-red-600" role="alert">
@@ -46,7 +46,7 @@
 
             <div class="mb-4">
                 <label for="endDateTime" class="text-sm text-gray-600">Date de fin</label>
-                <input type="date" id="endDateTime" formControlName="endDateTime"
+                <input type="datetime-local" id="endDateTime" formControlName="endDateTime"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                 <div *ngIf="eventForm.get('endDateTime')?.hasError('required') && eventForm.get('endDateTime')?.touched"
                     class="alert alert-danger text-sm text-red-600" role="alert">

@@ -11,13 +11,11 @@
         <p *ngIf="selectedCompany.categories.length > 0" class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Catégorie : {{ selectedCompany.categories }} </p>
         <p class="font-normal text-gray-700 dark:text-gray-400"> Adresse : {{ selectedCompany.location }} </p>
         <p class="font-normal text-gray-700 dark:text-gray-400"> Description : {{ selectedCompany.description }} </p>
-        <div class="flex flex-row justify-end mt-10 w-full">
+        <div class="flex flex-col mt-10 w-full">
             <p class="text-gray-700 dark:text-gray-400">Evènements organisés : </p>
-            <!--ToDo: Get events from company-->
-            <!--<a href="#" *ngFor="let organizer of selectedEvent.organizers" class="flex flex-col items-center">
-                <img class="w-10 h-10 rounded-full mr-4" src="{{ organizer.name }}" alt="Organizer picture">
-                <p class="text-gray-900 dark:text-gray-400 leading-none font-bold mb-2"> {{ organizer.name }} </p>
-            </a>-->
+            <div *ngFor="let event of organizedEvents">
+                <app-mini-card [event]="event" [showOrganizer]="false" class="w-full"></app-mini-card>
+            </div>
         </div>
     </div>
     

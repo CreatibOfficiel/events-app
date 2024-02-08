@@ -20,7 +20,7 @@ import {IconProp} from "@fortawesome/fontawesome-svg-core";
   styleUrl: './card-company.component.css'
 })
 export class CardCompanyComponent {
-  @Input() company: Company = new Company(0, 'default name', 'default type', [new CompanyCategory(0, 'default name', 'default desc')], 'default desc', new Date(), 'default location', false);
+  @Input() company: Company = new Company(0, 'default name', 'default type', [new CompanyCategory(0, 'default name', 'default desc')], 'default desc', new Date(), 'default location', false, []);
   isMobile: boolean = false;
   faBuildingMemo: IconProp = faBuilding;
 

@@ -1,4 +1,5 @@
 import { CompanyCategory } from "./company-category.model";
+import { Event } from "./event.model";
 
 export class Company {
     id: number;
@@ -9,8 +10,9 @@ export class Company {
     creationDate: Date;
     location: string;
     validated: boolean;
+    events: [];
 
-    constructor(id: number, name: string, type: string, categories: CompanyCategory[], description: string, creationDate: Date, location: string, validated: boolean) {
+    constructor(id: number, name: string, type: string, categories: CompanyCategory[], description: string, creationDate: Date, location: string, validated: boolean, events: []) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -19,6 +21,7 @@ export class Company {
         this.creationDate = creationDate;
         this.location = location;
         this.validated = validated;
+        this.events = events;
     }
 
     getCompanyType(): string {
