@@ -28,7 +28,7 @@
         <div class="flex flex-row justify-end items-center mt-10 w-full">
             <p class="text-gray-700 dark:text-gray-400">Organisé par : </p>
             <div *ngFor="let organizer of selectedEvent.realOrganizers" class="flex flex-col">
-                <a [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 dark:text-gray-400 leading-none"> {{ organizer.name }} </a>
+                <a [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 dark:text-gray-400 leading-none ml-1.5"> {{ organizer.name }}, </a>
             </div>
         </div>
     </div>
