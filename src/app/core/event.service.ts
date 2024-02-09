@@ -142,4 +142,17 @@ export class EventService extends MainService {
       })
     );
   }
+
+  getAllEventsOfCompany(companyId: number) {
+    return this.http.get(`${this.fullApiUrl}/events/getOfCompany/${companyId}`, { headers : this.headers }).pipe(
+      tap((res: any) => {
+        console.log(res);
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
 }

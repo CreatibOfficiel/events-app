@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EventService } from '../../../core/event.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Company } from '../../../models/company.model';
 import { CompanyService } from '../../../core/company.service';
 import { Tag } from '../../../models/tag.model';
 import { TagService } from '../../../core/tag.service';
 import { MatSelectModule } from '@angular/material/select';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-event',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MatSelectModule],
+  imports: [ReactiveFormsModule, CommonModule, MatSelectModule, FontAwesomeModule],
   templateUrl: './create-event.component.html',
   styleUrl: './create-event.component.css'
 })
@@ -19,16 +21,17 @@ export class CreateEventComponent {
   eventForm: FormGroup;
   organizers: Company[] = [];
   tags: Tag[] = [];
+  faArrowLeft = faArrowLeft;
 
   constructor(
     private formBuilder: FormBuilder,
     private eventService: EventService,
     private companyService: CompanyService,
-    private tagService: TagService
+    private tagService: TagService,
+    private _location: Location
   ) {
     this.eventForm = this.formBuilder.group({
       name: ['', Validators.required],
-      // file: new FormControl<File | undefined>(undefined, Validators.required),
       description: ['', Validators.required],
       startDateTime: ['', Validators.required],
       endDateTime: ['', Validators.required],
@@ -49,8 +52,6 @@ export class CreateEventComponent {
       return;
     }
 
-    console.log(this.eventForm.get('file')?.value);
-
     this.eventService.createEvent(this.eventForm.value).subscribe((res) => {
       console.log(res);
     });
@@ -68,15 +69,8 @@ export class CreateEventComponent {
     });
   }
 
-  // onFileChange(event: any) {
-  //   const files = event.target.files;
-
-  //   if (files.length > 0) {
-  //     const file = files[0];
-  //     this.eventForm.patchValue({
-  //       file: file
-  //     });
-  //   }
-  // }
+  backClicked() {
+    this._location.back();
+  }
 
 }
