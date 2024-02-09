@@ -10,12 +10,14 @@ import { EventService } from '../../core/event.service';
 import { UserService } from '../../core/user.service';
 import { User } from '../../models/user.model';
 import { CompanyService } from '../../core/company.service';
+import { ThemePalette } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-calendar',
   standalone: true,
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css',
-  imports: [CardComponent, CommonModule, FontAwesomeModule]
+  imports: [CardComponent, CommonModule, FontAwesomeModule, MatProgressSpinnerModule]
 })
 export class CalendarComponent {
 
@@ -28,6 +30,8 @@ export class CalendarComponent {
   faAngleLeft = faAngleLeft;
   faAngleRight = faAngleRight;
   userId: number|undefined = undefined;
+  spinnerColor: ThemePalette = 'warn';
+  isLoading = false;
 
   constructor(
     private eventService: EventService,
@@ -46,7 +50,9 @@ export class CalendarComponent {
       // });
       this.userService.getCurrentUser().then((user: User) => {
         this.userId = user.id;
+        this.isLoading = true;
         this.getUserEventsForMonth(this.userId!, this.month).then((events) => {
+          this.isLoading = false;
           this.events = events;
           for (let event of this.events) {
             event.realOrganizers = [];
@@ -83,9 +89,14 @@ export class CalendarComponent {
       this.monthString = this.currentDay.toLocaleString('fr-FR', { month: 'long' });
       this.year = this.currentDay.getFullYear();
 
+      this.isLoading = true;
       this.getUserEventsForMonth(this.userId!, this.month).then((events) => {
         console.log(events);
+        this.isLoading = false;
         this.events = events;
+        for (let event of this.events) {
+          event.realOrganizers = [];
+        }
       });
     }
 
@@ -95,9 +106,14 @@ export class CalendarComponent {
       this.monthString = this.currentDay.toLocaleString('fr-FR', { month: 'long' });
       this.year = this.currentDay.getFullYear();
 
+      this.isLoading = true;
       this.getUserEventsForMonth(this.userId!, this.month).then((events) => {
         console.log(events);
+        this.isLoading = false;
         this.events = events;
+        for (let event of this.events) {
+          event.realOrganizers = [];
+        }
       });
     }
 

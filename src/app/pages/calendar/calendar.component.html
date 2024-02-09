@@ -10,4 +10,5 @@
     </div>
     
     <app-card *ngFor="let event of events" [event]="event" class="w-full"></app-card>
+    <mat-spinner *ngIf="isLoading" [color]="spinnerColor" class="mt-5"></mat-spinner>
 </div>

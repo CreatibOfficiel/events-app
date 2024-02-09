@@ -96,17 +96,12 @@ export class EventService extends MainService {
     );
   }
 
-  createEvent(event: any) {
-    return this.http.post(`${this.fullApiUrl}/events`, event, { headers : this.headersPost }).pipe(
-      tap((res: any) => {
-        console.log(res);
-        return res;
-      }),
-      catchError(err => {
-        console.log(err);
-        return of(false);
-      })
-    );
+  async createEvent(event: any): Promise<Event|null> {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${this.fullApiUrl}/events`, event, { headers : this.headersPost }).subscribe((data) => {
+        resolve(data as Event);
+      });
+    });
   }
 
   async search(searchValue: string): Promise<Event[]> {
@@ -169,6 +164,19 @@ export class EventService extends MainService {
   isUserParticipating(eventId: number) {
     return this.http.get(`${this.fullApiUrl}/events/${eventId}/isUserParticipant`, { headers : this.headers }).pipe(
       tap((res: any) => {
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  getAllEventsOfCompany(companyId: number) {
+    return this.http.get(`${this.fullApiUrl}/events/getOfCompany/${companyId}`, { headers : this.headers }).pipe(
+      tap((res: any) => {
+        console.log(res);
         return res;
       }),
       catchError(err => {

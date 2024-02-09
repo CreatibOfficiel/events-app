@@ -188,4 +188,9 @@ export class UserService extends MainService{
     });
   }
 
+  async getCurrentUserCompany(): Promise<string> {
+    return await this.getCurrentUser().then((user: User) => {
+      return user.company || '';
+    });
+  }
 }
