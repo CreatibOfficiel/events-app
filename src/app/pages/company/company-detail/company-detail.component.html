@@ -73,6 +73,17 @@
     <div class="w-full h-0.5 bg-gray-200"></div>
 
     <div class="flex flex-col w-full">
+        <p class="text-gray-700">Description</p>
+        <p class="text-gray-500">{{ selectedCompany.description }}</p>
+
+        <p class="text-gray-700">Adresse</p>
+        <p class="text-gray-500">{{ selectedCompany.location }}</p>
+    </div>
+
+    <!-- line divider -->
+    <div class="w-full h-0.5 bg-gray-200"></div>
+
+    <div class="flex flex-col w-full">
         <!-- ngIf no events, print message -->
         <p *ngIf="organizedEvents.length == 0" class="text-gray-700">Aucun évènement organisé</p>
 

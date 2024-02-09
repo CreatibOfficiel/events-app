@@ -12,17 +12,17 @@
       <a [routerLink]="['/event/detail', event.id]" class="text-gray-900 font-bold text-xl mb-2">{{ event.name }}</a>
       <a class="ml-1.5" (click)="followEvent(event.id)">
         <fa-icon [icon]="faHeart" class="mr-1.5"
-          [ngClass]="{'text-red-500': isUserParticipating, 'text-gray-500': !isUserParticipating}"
-        ></fa-icon>
+          [ngClass]="{'text-red-500': isUserParticipating, 'text-gray-500': !isUserParticipating}"></fa-icon>
       </a>
       <p class="text-gray-700 text-base hidden sm:block">{{ (event.description.length > 200) ? ( event.description |
         slice:0:200) + '...': event.description}}</p>
     </div>
     <div class="flex items-center">
       <div class="text-sm">
-        <p class="text-gray-900 leading-none font-bold mb-2"> Organisé par : </p>
+        <p class="text-gray-900 leading-none font-bold mb-2 whitespace-nowrap"> Organisé par : </p>
         <div *ngFor="let organizer of event.realOrganizers">
-          <a [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 leading-none"> {{ organizer.name }} </a>
+          <a [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 leading-none"> {{ organizer.name }}
+          </a>
         </div>
       </div>
       <div class="flex justify-end w-full">

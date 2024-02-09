@@ -5,7 +5,7 @@ import { OnInit } from '@angular/core';
 import { Event } from '../../models/event.model';
 import { EventService } from '../../core/event.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faBuilding, faCalendar, faHandshake, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { CompanyService } from '../../core/company.service';
 
 @Component({
@@ -18,6 +18,10 @@ import { CompanyService } from '../../core/company.service';
 export class EventDetailComponent {
   selectedEvent: Event | null = null;
   faAngleLeft = faAngleLeft;
+  faBuilding = faBuilding;
+  faCalendar = faCalendar;
+  faMapMarkerAlt = faMapMarkerAlt;
+  faHandshake = faHandshake;
 
   constructor(
     private route: ActivatedRoute,

@@ -4,16 +4,18 @@
         <fa-icon [icon]="faAngleLeft"></fa-icon>
     </button>
 
-    <span class="text-2xl font-bold">Créer un événement</span>
+    <span class="text-2xl font-bold">Gestion des événements</span>
 
     <div></div> <!-- Utiliser un div vide pour pousser le texte à gauche -->
 </div>
 
-
-<a [routerLink]="['/event/create']"
-    class="inline-flex mb-1.5 items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
-    <fa-icon [icon]="faPlus" class="mr-1.5"></fa-icon>Nouvel événement
-</a>
+<div class="flex justify-center">
+    <a [routerLink]="['/event/create']"
+        class="inline-flex p-2 full bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+        <fa-icon [icon]="faPlus" class="mr-1.5"></fa-icon>
+        Nouvel événement
+    </a>
+</div>
 
 <div class="bg-grey-200 flex flex-col items-center justify-center grow">
 
@@ -43,7 +45,7 @@
                 <li *ngFor="let organizer of event.realOrganizers">{{ organizer.name }}</li>
             </ul>
         </div>
-        
+
 
         <div class="flex justify-around">
             <a [routerLink]="['/admin/event/edit', event.id]"

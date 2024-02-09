@@ -14,23 +14,69 @@
 </div>
 
 
-<div *ngIf="selectedEvent != null" class="flex flex-col w-full items-center">
-    <img class="w-9/12 mb-5"
-        [src]="selectedEvent.image ? 'https://localhost:8000' + selectedEvent.image : 'https://picsum.photos/200'"
-        alt="No Image Found">
+<div *ngIf="selectedEvent != null" class="flex flex-col space-y-6 m-4">
 
-    <div
-        class="flex flex-col items-center w-9/12 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ selectedEvent.name }}</h5>
-        <p class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Le {{ selectedEvent.startDateTime | date }}
-            à {{ selectedEvent.location }} </p>
-        <p class="font-normal text-gray-700 dark:text-gray-400"> {{ selectedEvent.description }} </p>
-        <div class="flex flex-row justify-end items-center mt-10 w-full">
-            <p class="text-gray-700 dark:text-gray-400 mr-3">Organisé par : </p>
-            <div class="flex flex-col">
-                <a *ngFor="let organizer of selectedEvent.realOrganizers" [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 dark:text-gray-400 leading-none hover:text-gray-100"> {{ organizer.name }} </a>
+    <div class="flex flex-col space-y-4 bg-gray-100 rounded-xl p-4">
+        <div class="flex items-center space-x-2">
+            <div class="flex items-center justify-center bg-blue-300 p-4 rounded w-14 h-14">
+                <fa-icon [icon]="faBuilding" class="text-2xl text-white"></fa-icon>
             </div>
+
+            <div class="flex flex-col">
+                <h1 class="text-lg font-semibold">{{ selectedEvent.realOrganizers.length }}</h1>
+                <span class="text-gray-400">Organisateurs</span>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-2">
+            <div class="flex items-center justify-center bg-blue-300 p-4 rounded w-14 h-14">
+                <fa-icon [icon]="faCalendar" class="text-2xl text-white"></fa-icon>
+            </div>
+
+            <div class="flex flex-col">
+                <h1 class="text-lg font-semibold">{{ selectedEvent.startDateTime | date }}</h1>
+                <span class="text-gray-400">Date</span>
+            </div>
+        </div>
+
+        <!-- divider line -->
+        <div class="border-t-2 border-gray-500 my-4"></div>
+
+        <!-- description -->
+        <div class="flex flex-col">
+            <h1 class="text-lg font-semibold">Description</h1>
+            <span class="text-gray-400">{{ selectedEvent.description }}</span>
         </div>
     </div>
 
+    <div class="flex flex-col bg-gray-100 rounded-xl p-4 space-y-4">
+        <div class="flex items-center space-x-2">
+            <div class="flex items-center justify-center bg-blue-300 p-4 rounded w-14 h-14">
+                <fa-icon [icon]="faHandshake" class="text-2xl text-white"></fa-icon>
+            </div>
+
+            <span class="text-lg font-semibold">Liste des organisateurs</span>
+        </div>
+
+        <div *ngFor="let organizer of selectedEvent.realOrganizers" class="flex flex-col space-y-2">
+            <a [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 leading-none">- {{
+                organizer.name }} </a>
+        </div>
+    </div>
+
+    <div class="flex flex-col bg-gray-100 rounded-xl p-4 space-y-4">
+        <div class="flex items-center space-x-2">
+            <div class="flex items-center justify-center bg-blue-300 p-4 rounded w-14 h-14">
+                <fa-icon [icon]="faMapMarkerAlt" class="text-2xl text-white"></fa-icon>
+            </div>
+
+            <span class="text-lg font-semibold">Emplacement</span>
+        </div>
+
+        <span class="text-gray-400">{{ selectedEvent.location }}</span>
+    </div>
+
+    <img class="w-9/12 mb-5"
+        [src]="selectedEvent.image ? 'https://localhost:8000' + selectedEvent.image : 'https://picsum.photos/200'"
+        alt="No Image Found">
 </div>
