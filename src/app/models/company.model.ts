@@ -11,8 +11,9 @@ export class Company {
     location: string;
     validated: boolean;
     events: [];
+    suscribersNumber: number | undefined;
 
-    constructor(id: number, name: string, type: string, categories: CompanyCategory[], description: string, creationDate: Date, location: string, validated: boolean, events: []) {
+    constructor(id: number, name: string, type: string, categories: CompanyCategory[], description: string, creationDate: Date, location: string, validated: boolean, events: [], suscribersNumber: number = 0) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -22,6 +23,7 @@ export class Company {
         this.location = location;
         this.validated = validated;
         this.events = events;
+        this.suscribersNumber = suscribersNumber;
     }
 
     getCompanyType(): string {

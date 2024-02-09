@@ -26,15 +26,15 @@
             <div class="flex items-center space-x-2">
                 <span class="text-gray-500">Statut</span>
                 <!-- green or yellow badge -->
-                <div class="flex space-x-1 items-center justify-center bg-green-300 p-2 rounded-lg">
+                <div *ngIf="this.selectedCompany?.validated" class="flex space-x-1 items-center justify-center bg-green-300 p-2 rounded-lg">
                     <fa-icon [icon]="faCheck" class="text-sm text-white"></fa-icon>
                     <span class="text-sm text-white">vérifié</span>
                 </div>
 
-<!--                <div class="flex space-x-1 items-center justify-center bg-yellow-300 p-2 rounded-lg">-->
-<!--                    <fa-icon [icon]="faTriangleExclamation" class="text-sm text-white"></fa-icon>-->
-<!--                    <span class="text-sm text-white">non vérifié</span>-->
-<!--                </div>-->
+                <div *ngIf="!this.selectedCompany?.validated" class="flex space-x-1 items-center justify-center bg-yellow-300 p-2 rounded-lg">
+                    <fa-icon [icon]="faTriangleExclamation" class="text-sm text-white"></fa-icon>
+                    <span class="text-sm text-white">non vérifié</span>
+                </div>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
             </div>
 
             <div class="flex flex-col">
-                <h1 class="text-lg font-semibold">1</h1>
+                <h1 class="text-lg font-semibold">{{ this.selectedCompany ? this.selectedCompany.events ? this.selectedCompany.events.length : 0 : 0 }}</h1>
                 <span class="text-gray-400">événements créés</span>
             </div>
         </div>
@@ -57,16 +57,26 @@
             </div>
 
             <div class="flex flex-col">
-                <h1 class="text-lg font-semibold">3</h1>
+                <h1 class="text-lg font-semibold">{{ this.suscribersNumber }}</h1>
                 <span class="text-gray-400">abonnés</span>
             </div>
         </div>
     </div>
 
     <button
+      *ngIf="!isSubscribed"
+        (click)="subscribeToCompany()"
         class="flex items-center text-blue-500 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
         <fa-icon [icon]="faUserPlus"></fa-icon>
         <span class="ml-2">S'abonner</span>
+    </button>
+
+    <button
+      *ngIf="isSubscribed"
+        (click)="subscribeToCompany()"
+        class="flex items-center text-red-500 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+        <fa-icon [icon]="faUserMinus"></fa-icon>
+        <span class="ml-2">Se désabonner</span>
     </button>
 
     <!-- line divider -->

@@ -8,6 +8,8 @@ import { Company } from '../../../models/company.model';
 import { MiniCardComponent } from '../../../shared/components/mini-card/mini-card.component';
 import { Event } from '../../../models/event.model';
 import { EventService } from '../../../core/event.service';
+import {UserService} from "../../../core/user.service";
+import {faUserMinus} from "@fortawesome/free-solid-svg-icons/faUserMinus";
 
 @Component({
   selector: 'app-company-detail',
@@ -26,12 +28,16 @@ export class CompanyDetailComponent {
   selectedCompany: Company | null = null;
   organizedEventsIds: any[] = [];
   organizedEvents: Event[] = [];
+  userId: any;
+  suscribersNumber: number = 0;
+  isSubscribed: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private _location: Location,
     private companyService: CompanyService,
-    private eventService: EventService
+    private eventService: EventService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +47,7 @@ export class CompanyDetailComponent {
       this.getSelectedCompany(companyId).then((company) => {
         console.log(company);
         this.selectedCompany = company;
+        this.suscribersNumber = company?.suscribersNumber || 0;
         this.organizedEventsIds = company?.events || [];
         for (let event of this.organizedEventsIds) {
           this.eventService.getEventById(event.id).then((event: Event | null) => {
@@ -49,6 +56,12 @@ export class CompanyDetailComponent {
             }
           });
         }
+        this.companyService.isUserSubscriber(this.selectedCompany ? this.selectedCompany.id : 0).subscribe((data) => {
+          console.log(data);
+          if (data !== null && data === true) {
+            this.isSubscribed = true;
+          }
+        });
       });
 
     });
@@ -75,4 +88,29 @@ export class CompanyDetailComponent {
     return '14/02/2021';
   }
 
+  async getUserId() {
+    this.userId = await this.userService.getCurrentUserId();
+  }
+
+  subscribeToCompany() {
+    if (!this.isSubscribed) {
+      this.companyService.addFollow(this.selectedCompany ? this.selectedCompany.id : 0).subscribe((data) => {
+        console.log(data);
+        if (data !== null) {
+          this.suscribersNumber++;
+          this.isSubscribed = true;
+        }
+      });
+    } else {
+      this.companyService.removeFollow(this.selectedCompany ? this.selectedCompany.id : 0).subscribe((data) => {
+        console.log(data);
+        if (data !== null) {
+          this.suscribersNumber--;
+          this.isSubscribed = false;
+        }
+      });
+    }
+  }
+
+  protected readonly faUserMinus = faUserMinus;
 }

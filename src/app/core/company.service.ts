@@ -124,4 +124,40 @@ export class CompanyService extends MainService{
             });
           });
         }
+
+  addFollow(companyId: number) {
+    return this.http.post(`${this.fullApiUrl}/companies/${companyId}/addSubscriber`,{}, { headers : this.headersPost }).pipe(
+      tap((res: any) => {
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  removeFollow(companyId: number) {
+    return this.http.post(`${this.fullApiUrl}/companies/${companyId}/removeSubscriber`,{}, { headers : this.headersPost }).pipe(
+      tap((res: any) => {
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  isUserSubscriber(companyId: number) {
+    return this.http.get(`${this.fullApiUrl}/companies/${companyId}/isUserSubscribe`, { headers : this.headers }).pipe(
+      tap((res: any) => {
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
 }
