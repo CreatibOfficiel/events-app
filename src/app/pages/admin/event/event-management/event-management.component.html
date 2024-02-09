@@ -1,24 +1,35 @@
-<button (click)="backClicked()"
-    class="flex text-red-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-    <fa-icon [icon]="faArrowLeft"></fa-icon>
-</button>
+<div class="flex items-center justify-between p-8">
+    <button (click)="backClicked()"
+        class="flex items-center text-blue-500 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+        <fa-icon [icon]="faAngleLeft"></fa-icon>
+    </button>
 
-<a [routerLink]="['/event/create']" class="inline-flex mb-1.5 items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
-  <fa-icon [icon]="faPlus" class="mr-1.5"></fa-icon>Nouvel événement
+    <span class="text-2xl font-bold">Créer un événement</span>
+
+    <div></div> <!-- Utiliser un div vide pour pousser le texte à gauche -->
+</div>
+
+
+<a [routerLink]="['/event/create']"
+    class="inline-flex mb-1.5 items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+    <fa-icon [icon]="faPlus" class="mr-1.5"></fa-icon>Nouvel événement
 </a>
 
 <div class="bg-grey-200 flex flex-col items-center justify-center grow">
 
-    <div *ngFor="let event of events" class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div *ngFor="let event of events"
+        class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ event.name }}</h5>
 
-        <img [src]="event.image ? 'https://localhost:8000' + event.image : 'https://picsum.photos/200'" alt="event image" class="w-full h-64 object-cover rounded-lg">
+        <img [src]="event.image ? 'https://localhost:8000' + event.image : 'https://picsum.photos/200'"
+            alt="event image" class="w-full h-64 object-cover rounded-lg">
 
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Id : {{ event.id }}</p>
 
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Description : {{ event.description }}</p>
 
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ event.startDateTime | date }} - {{ event.endDateTime | date }}</p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ event.startDateTime | date }} - {{
+            event.endDateTime | date }}</p>
 
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Emplacement : {{ event.location }}</p>
 
@@ -35,10 +46,12 @@
         
 
         <div class="flex justify-around">
-            <a [routerLink]="['/admin/event/edit', event.id]" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+            <a [routerLink]="['/admin/event/edit', event.id]"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                 Editer
             </a>
-            <button (click)="deleteEvent(event.id)" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+            <button (click)="deleteEvent(event.id)"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                 Supprimer
             </button>
         </div>

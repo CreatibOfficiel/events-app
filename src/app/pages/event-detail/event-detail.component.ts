@@ -5,7 +5,7 @@ import { OnInit } from '@angular/core';
 import { Event } from '../../models/event.model';
 import { EventService } from '../../core/event.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { CompanyService } from '../../core/company.service';
 
 @Component({
@@ -16,15 +16,15 @@ import { CompanyService } from '../../core/company.service';
   styleUrl: './event-detail.component.css'
 })
 export class EventDetailComponent {
-  selectedEvent: Event|null = null;
-  faArrowLeft = faArrowLeft;
-  
+  selectedEvent: Event | null = null;
+  faAngleLeft = faAngleLeft;
+
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private eventService: EventService,
     private companyService: CompanyService,
     private _location: Location
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -40,10 +40,10 @@ export class EventDetailComponent {
     });
   }
 
-  async getSelectedEvent(id: number): Promise<Event|null> {
-    
+  async getSelectedEvent(id: number): Promise<Event | null> {
+
     let event = await this.eventService.getEventById(id);
-    
+
     if (event !== null) {
       event.organizers.forEach((organizer) => {
         const match = organizer.match(/\/(\d+)$/);
@@ -55,10 +55,10 @@ export class EventDetailComponent {
             }
           });
         }
-        
+
       });
     }
-    
+
     if (event !== null) {
       return event;
     }

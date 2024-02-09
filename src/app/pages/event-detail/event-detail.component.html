@@ -1,18 +1,29 @@
-<div *ngIf= "selectedEvent == null" class="w-full bg-red-600 flex justify-center">
-    <p class="font-bold p-2">Error while getting Event</p>
+<div *ngIf="selectedEvent == null" class="w-full bg-red-600 flex justify-center">
+    <p class="font-bold p-2">Erreur : Aucun événement sélectionné</p>
 </div>
 
-<button (click)="backClicked()"
-    class="flex text-red-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-    <fa-icon [icon]="faArrowLeft"></fa-icon>
-</button>
+<div class="flex items-center justify-between p-8">
+    <button (click)="backClicked()"
+        class="flex items-center text-blue-500 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+        <fa-icon [icon]="faAngleLeft"></fa-icon>
+    </button>
+
+    <span class="text-2xl font-bold">{{ selectedEvent?.name }}</span>
+
+    <div></div> <!-- Utiliser un div vide pour pousser le texte à gauche -->
+</div>
+
 
 <div *ngIf="selectedEvent != null" class="flex flex-col w-full items-center">
-    <img class="w-9/12 mb-5" [src]="selectedEvent.image ? 'https://localhost:8000' + selectedEvent.image : 'https://picsum.photos/200'" alt="No Image Found">
+    <img class="w-9/12 mb-5"
+        [src]="selectedEvent.image ? 'https://localhost:8000' + selectedEvent.image : 'https://picsum.photos/200'"
+        alt="No Image Found">
 
-    <div class="flex flex-col items-center w-9/12 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div
+        class="flex flex-col items-center w-9/12 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ selectedEvent.name }}</h5>
-        <p class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Le {{ selectedEvent.startDateTime | date }} à {{ selectedEvent.location }} </p>
+        <p class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Le {{ selectedEvent.startDateTime | date }}
+            à {{ selectedEvent.location }} </p>
         <p class="font-normal text-gray-700 dark:text-gray-400"> {{ selectedEvent.description }} </p>
         <div class="flex flex-row justify-end items-center mt-10 w-full">
             <p class="text-gray-700 dark:text-gray-400">Organisé par : </p>
@@ -23,4 +34,3 @@
     </div>
 
 </div>
-

@@ -4,16 +4,18 @@
         <fa-icon [icon]="faAngleLeft"></fa-icon>
     </button>
 
-    <span class="text-2xl font-bold">Créer une entreprise</span>
+    <span class="text-2xl font-bold">Profil entreprise / BDE</span>
 
     <div></div> <!-- Utiliser un div vide pour pousser le texte à gauche -->
 </div>
 
-
-
-
 <div class="bg-grey-200 flex items-center justify-center">
-    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+
+    <div class="bg-white p-8 rounded-lg shadow-md w-96 flex flex-col space-y-5">
+        <div class="flex flex-col space-y-2">
+            <span class="text-4xl font-semibold">Faisons connaissance ! 🤝 </span>
+            <span class="text-lg text-gray-500">Nous avons besoin de quelques informations supplémentaires</span>
+        </div>
 
         <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
             <div class="mb-4">
@@ -27,7 +29,7 @@
             </div>
 
             <div class="mb-4">
-                <label for="type" class="text-sm text-gray-600">Type</label>
+                <label for="type" class="text-sm text-gray-600">Type de profil</label>
                 <select name="type" id="type" formControlName="type"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                     <option value="Entreprise">Entreprise</option>
@@ -40,7 +42,7 @@
             </div>
 
             <div class="mb-4" *ngIf="showCategories">
-                <label for="categories" class="text-sm text-gray-600">Catégories</label>
+                <label for="categories" class="text-sm text-gray-600">Catégories d'établissement</label>
                 <select name="categories" id="categories" formControlName="categories"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                     <option *ngFor="let category of companyCategories" value="{{category.id}}">{{ category.name }}
@@ -49,7 +51,7 @@
             </div>
 
             <div class="mb-4">
-                <label for="description" class="text-sm text-gray-600">Description</label>
+                <label for="description" class="text-sm text-gray-600">Petite biographie</label>
                 <textarea id="description" formControlName="description"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                 </textarea>
@@ -60,7 +62,7 @@
             </div>
 
             <div class="mb-4">
-                <label for="location" class="text-sm text-gray-600">Emplacement</label>
+                <label for="location" class="text-sm text-gray-600">Adresse postale</label>
                 <input type="text" id="location" formControlName="location"
                     class="w-full mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                 <div *ngIf="companyForm.get('location')?.hasError('required') && companyForm.get('location')?.touched"
@@ -72,7 +74,7 @@
             <button (click)="createCompany()"
                 class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 {{ companyForm.invalid ? 'bg-gray-400 hover:bg-gray-400' : '' }}"
                 [disabled]="companyForm.invalid">
-                Créer l'entreprise
+                Créer le profil
             </button>
         </form>
 

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CompanyService } from '../../../core/company.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faCalendar, faCheck, faPeopleGroup, faTriangleExclamation, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Company } from '../../../models/company.model';
 import { MiniCardComponent } from '../../../shared/components/mini-card/mini-card.component';
 import { Event } from '../../../models/event.model';
@@ -17,8 +17,13 @@ import { EventService } from '../../../core/event.service';
   styleUrl: './company-detail.component.css'
 })
 export class CompanyDetailComponent {
-  faArrowLeft = faArrowLeft;
-  selectedCompany: Company|null = null;
+  faAngleLeft = faAngleLeft;
+  faCheck = faCheck;
+  faTriangleExclamation = faTriangleExclamation;
+  faCalendar = faCalendar;
+  faPeopleGroup = faPeopleGroup;
+  faUserPlus = faUserPlus;
+  selectedCompany: Company | null = null;
   organizedEventsIds: any[] = [];
   organizedEvents: Event[] = [];
 
@@ -38,7 +43,7 @@ export class CompanyDetailComponent {
         this.selectedCompany = company;
         this.organizedEventsIds = company?.events || [];
         for (let event of this.organizedEventsIds) {
-          this.eventService.getEventById(event.id).then((event: Event|null) => {
+          this.eventService.getEventById(event.id).then((event: Event | null) => {
             if (event !== null) {
               this.organizedEvents.push(event);
             }
@@ -53,7 +58,7 @@ export class CompanyDetailComponent {
     this._location.back();
   }
 
-  async getSelectedCompany(id: number): Promise<Company|null> {
+  async getSelectedCompany(id: number): Promise<Company | null> {
     let company = await this.companyService.getCompanyById(id);
 
     if (company !== null) {
@@ -61,6 +66,13 @@ export class CompanyDetailComponent {
     }
 
     return null;
+  }
+
+  getCompanySince(): string {
+    if (this.selectedCompany !== null) {
+      return '14/02/2021';
+    }
+    return '14/02/2021';
   }
 
 }

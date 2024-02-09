@@ -4,8 +4,8 @@ import { EventService } from '../../../../core/event.service';
 import { CommonModule, Location } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 import { CompanyService } from '../../../../core/company.service';
 
 @Component({
@@ -17,13 +17,13 @@ import { CompanyService } from '../../../../core/company.service';
 })
 export class EventManagementComponent {
   events: Event[] = [];
-  faArrowLeft = faArrowLeft;
+  faAngleLeft = faAngleLeft;
 
   constructor(
     private eventService: EventService,
     private companyService: CompanyService,
     private _location: Location
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getEvents();

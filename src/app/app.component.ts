@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Router, RouterOutlet} from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { NavbarMobileComponent } from './shared/components/navbar-mobile/navbar-mobile.component';
 import { NavbarDesktopComponent } from './shared/components/navbar-desktop/navbar-desktop.component';
 import { BreakpointObserver, Breakpoints, LayoutModule } from '@angular/cdk/layout';
@@ -12,13 +12,13 @@ import { BreakpointObserver, Breakpoints, LayoutModule } from '@angular/cdk/layo
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   isMobile: boolean = false;
   //title = 'Front';
 
   constructor(private responsive: BreakpointObserver,
-              private router: Router) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.responsive.observe([
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit{
   }
 
   isLoginOrRegisterPage(): boolean {
-    return this.router.url === '/login' || this.router.url === '/register';
+    return this.router.url === '/login' || this.router.url === '/register' || this.router.url.includes('/company');
   }
 
 }
