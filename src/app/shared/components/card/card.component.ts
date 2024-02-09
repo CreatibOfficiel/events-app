@@ -66,11 +66,11 @@ export class CardComponent {
   }
 
   checkIsUserParticipating() {
-    console.log("fefkhvezjgfvehj", this.userId);
-    console.log("fefkhvezjgfvehj", this.event.userParticipating);
 
-    this.isUserParticipating = this.event.participants.includes(String(this.userId));
-    console.log(this.isUserParticipating);
+    if (this.event.userParticipating === undefined) {
+      return;
+    }
+    this.isUserParticipating = this.event.userParticipating.includes(this.userId);
   }
 
   followEvent(eventId: number) {
