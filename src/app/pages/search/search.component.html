@@ -9,7 +9,7 @@
   <div *ngIf="this.events">
     <app-card-company *ngFor="let company of companies" [company]="company" class="w-full" [routerLink]="['/company/detail', company.id]"></app-card-company>
   </div>
-  <div *ngIf="!this.events || this.events.length === 0 && !this.companies || this.companies.length === 0" class="h-1">
+  <div *ngIf="this.events.length===0 || this.companies.length === 0" class="h-1">
     <p class="text-center">Aucun évenement, entreprise ou BDE trouvé !</p>
   </div>
 </div>
