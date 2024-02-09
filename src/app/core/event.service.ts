@@ -131,9 +131,44 @@ export class EventService extends MainService {
   }
 
   addParticipant(eventId: number) {
-    return this.http.post(`${this.fullApiUrl}/events/addParticipant/${eventId}`, {"userId":5}, { headers : this.headersPost }).pipe(
+    return this.http.post(`${this.fullApiUrl}/events/${eventId}/addParticipant`,{}, { headers : this.headersPost }).pipe(
       tap((res: any) => {
-        console.log(res);
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  removeParticipant(eventId: number) {
+    return this.http.post(`${this.fullApiUrl}/events/${eventId}/removeParticipant`,{}, { headers : this.headersPost }).pipe(
+      tap((res: any) => {
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  isUserParticipant(eventId: number) {
+    return this.http.get(`${this.fullApiUrl}/events/${eventId}/isUserParticipant`, { headers : this.headers }).pipe(
+      tap((res: any) => {
+        return res;
+      }),
+      catchError(err => {
+        console.log(err);
+        return of(false);
+      })
+    );
+  }
+
+  isUserParticipating(eventId: number) {
+    return this.http.get(`${this.fullApiUrl}/events/${eventId}/isUserParticipant`, { headers : this.headers }).pipe(
+      tap((res: any) => {
         return res;
       }),
       catchError(err => {

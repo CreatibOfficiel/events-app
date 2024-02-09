@@ -26,7 +26,8 @@ export class MainService {
   public getHeaders(): HttpHeaders {
     return new HttpHeaders()
       .set('Authorization', `Bearer ${this.getToken()}`)
-      .set('Accept', 'application/json');
+      .set('Accept', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
   }
 
   public postHeaders(): HttpHeaders {

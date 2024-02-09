@@ -11,7 +11,9 @@
     <div class="mb-8 sm:max-w-sm lg:max-w-xl">
       <a [routerLink]="['/event/detail', event.id]" class="text-gray-900 font-bold text-xl mb-2">{{ event.name }}</a>
       <a class="ml-1.5" (click)="followEvent(event.id)">
-        <fa-icon [icon]="faHeart" class="mr-1.5"></fa-icon>
+        <fa-icon [icon]="faHeart" class="mr-1.5"
+          [ngClass]="{'text-red-500': isUserParticipating, 'text-gray-500': !isUserParticipating}"
+        ></fa-icon>
       </a>
       <p class="text-gray-700 text-base hidden sm:block">{{ (event.description.length > 200) ? ( event.description |
         slice:0:200) + '...': event.description}}</p>

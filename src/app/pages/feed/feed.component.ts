@@ -16,19 +16,21 @@ import { ThemePalette } from '@angular/material/core';
   styleUrl: './feed.component.css'
 })
 export class FeedComponent {
-  
+
   events: Event[] = [];
   pageToLoad = 1;
   loading = false;
   spinnerColor: ThemePalette = 'warn';
-  
+  userId: any;
+
   constructor(
     private eventService: EventService,
     private userService: UserService,
     ) { }
-    
+
     ngOnInit(): void {
-      
+
+      this.getUserId();
       //ToDo: Get events by user interests or by following companies
       this.getLatestEvents().then((events) => {
         console.log(events);
@@ -38,10 +40,10 @@ export class FeedComponent {
         }
       });
     }
-    
+
     @HostListener('window:scroll', ['$event'])
     onScroll(event: any) {
-      
+
       //console.log(event.target.scrollingElement.scrollHeight - event.target.scrollingElement.scrollTop);
       //console.log(event.target.scrollingElement.clientHeight);
       if ((event.target.scrollingElement.scrollHeight - event.target.scrollingElement.scrollTop) <= event.target.scrollingElement.clientHeight + 100) {
@@ -55,27 +57,29 @@ export class FeedComponent {
 
     async getLatestEvents(): Promise<Event[]> {
       let events = await this.eventService.getLatestEvents();
-      
+
       if (events !== null) {
         return events;
       }
-      
+
       return [];
     }
-    
+
     async getEventsByUserInterests(userId: number, page: number): Promise<Event[]> {
       let events = await this.eventService.getEventsByUserInterests(userId, page);
-      
+
       if (events !== null) {
         return events;
       }
-      
+
       return [];
     }
-    
+
     isAuthenticated(): boolean {
       return this.userService.isAuthenticated();
     }
-    
+
+  async getUserId() {
+    this.userId = await this.userService.getCurrentUserId();
   }
-  
+}

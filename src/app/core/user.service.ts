@@ -181,4 +181,11 @@ export class UserService extends MainService{
       return user.company !== undefined && user.company !== null;
     });
   }
+
+  async getCurrentUserId(): Promise<number | undefined> {
+    return await this.getCurrentUser().then((user: User) => {
+      return user.id;
+    });
+  }
+
 }

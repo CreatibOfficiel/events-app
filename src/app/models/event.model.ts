@@ -14,9 +14,10 @@ export class Event {
     participants: string[];
     organizers: string[];
     tags: Tag[];
+    userParticipating: string[] | undefined;
     realOrganizers: Company[];
 
-    constructor(id: number, name: string, description: string, creationDate: Date, startDateTime: Date, endDateTime: Date, location: string, image: string, participants: string[], organizers: string[], tags: Tag[]) {
+    constructor(id: number, name: string, description: string, creationDate: Date, startDateTime: Date, endDateTime: Date, location: string, image: string, participants: string[], organizers: string[], tags: Tag[], userParticipating?: string[]) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -29,5 +30,6 @@ export class Event {
         this.organizers = organizers;
         this.tags = tags;
         this.realOrganizers = [];
+        this.userParticipating = userParticipating;
     }
 }

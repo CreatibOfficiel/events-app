@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, Input } from '@angular/core';
+import {ChangeDetectorRef, Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Event } from '../../../models/event.model';
@@ -8,6 +8,7 @@ import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {faHeart} from "@fortawesome/free-solid-svg-icons/faHeart";
 import {EventService} from "../../../core/event.service";
 import { CompanyService } from '../../../core/company.service';
+import {UserService} from "../../../core/user.service";
 
 @Component({
   selector: 'app-card',
@@ -18,13 +19,17 @@ import { CompanyService } from '../../../core/company.service';
 })
 export class CardComponent {
   @Input() event: Event = new Event(0, 'default name', 'default desc', new Date(), new Date(), new Date(), '', '', [], [], []);
+  @Input() userId: number = 0;
 
   isMobile: boolean = false;
+  isUserParticipating: boolean = false;
 
   constructor(
     private responsive: BreakpointObserver,
     private companyService: CompanyService,
-    private eventService: EventService
+    private eventService: EventService,
+    private userService: UserService,
+    private cdr: ChangeDetectorRef
     ) { }
 
   ngOnInit() {
@@ -49,15 +54,40 @@ export class CardComponent {
             }
           });
         }
-        
+
       });
     }
+
+    this.checkIsUserParticipating();
+  }
+
+  ngOnChanges() {
+   this.checkIsUserParticipating();
+  }
+
+  checkIsUserParticipating() {
+    console.log("fefkhvezjgfvehj", this.userId);
+    console.log("fefkhvezjgfvehj", this.event.userParticipating);
+
+    this.isUserParticipating = this.event.participants.includes(String(this.userId));
+    console.log(this.isUserParticipating);
   }
 
   followEvent(eventId: number) {
-    this.eventService.addParticipant(eventId).subscribe((res) => {
-      alert('You are now following this event');
-    });
+    if (this.isUserParticipating) {
+      this.eventService.removeParticipant(eventId).subscribe((res) => {
+        if (res) {
+          this.isUserParticipating = false;
+        }
+      });
+      return;
+    } else {
+      this.eventService.addParticipant(eventId).subscribe((res) => {
+        if (res) {
+          this.isUserParticipating = true;
+        }
+      });
+    }
   }
 
   protected readonly faPlus = faPlus;
