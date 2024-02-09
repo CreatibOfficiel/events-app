@@ -15,9 +15,9 @@
         <p class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Le {{ selectedEvent.startDateTime | date }} à {{ selectedEvent.location }} </p>
         <p class="font-normal text-gray-700 dark:text-gray-400"> {{ selectedEvent.description }} </p>
         <div class="flex flex-row justify-end items-center mt-10 w-full">
-            <p class="text-gray-700 dark:text-gray-400">Organisé par : </p>
-            <div *ngFor="let organizer of selectedEvent.realOrganizers" class="flex flex-col">
-                <a [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 dark:text-gray-400 leading-none"> {{ organizer.name }} </a>
+            <p class="text-gray-700 dark:text-gray-400 mr-3">Organisé par : </p>
+            <div class="flex flex-col">
+                <a *ngFor="let organizer of selectedEvent.realOrganizers" [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 dark:text-gray-400 leading-none hover:text-gray-100"> {{ organizer.name }} </a>
             </div>
         </div>
     </div>

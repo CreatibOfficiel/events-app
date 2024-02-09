@@ -9,6 +9,7 @@ import { TagService } from '../../../core/tag.service';
 import { MatSelectModule } from '@angular/material/select';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-event',
@@ -28,7 +29,8 @@ export class CreateEventComponent {
     private eventService: EventService,
     private companyService: CompanyService,
     private tagService: TagService,
-    private _location: Location
+    private _location: Location, 
+    private router: Router
   ) {
     this.eventForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -52,8 +54,11 @@ export class CreateEventComponent {
       return;
     }
 
-    this.eventService.createEvent(this.eventForm.value).subscribe((res) => {
+    this.eventService.createEvent(this.eventForm.value).then((res) => {
       console.log(res);
+      if (res !== null) {
+        this.router.navigate(['/event/detail/' + res.id]);
+      }
     });
   }
 
