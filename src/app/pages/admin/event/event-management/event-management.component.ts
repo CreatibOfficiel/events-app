@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
+import { CompanyService } from '../../../../core/company.service';
 
 @Component({
   selector: 'app-event-management',
@@ -20,6 +21,7 @@ export class EventManagementComponent {
 
   constructor(
     private eventService: EventService,
+    private companyService: CompanyService,
     private _location: Location
   ) {}
 
@@ -30,6 +32,20 @@ export class EventManagementComponent {
   getEvents() {
     this.eventService.getAllEvents().subscribe((events) => {
       this.events = events;
+      for (let event of this.events) {
+        event.realOrganizers = [];
+        event.organizers.forEach((organizer) => {
+          const match = organizer.match(/\/(\d+)$/);
+          if (match) {
+            let organizerId = parseInt(match[1], 10);
+            this.companyService.getCompanyById(organizerId).then((company) => {
+              if (company) {
+                event.realOrganizers.push(company);
+              }
+            });
+          }
+        });
+      }
     });
   }
 

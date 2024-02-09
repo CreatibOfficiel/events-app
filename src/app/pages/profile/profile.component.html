@@ -82,12 +82,12 @@
     <div class="flex flex-col mt-60">
         <a *ngIf="!isCompany" routerLink="/company/create"
             class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-            Créer une entreprise/BDE
+            Créer un profil entreprise / BDE
         </a>
 
         <a *ngIf="isAdmin" routerLink="/admin/panel"
             class="flex justify-center w-full text-green-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-            Mode admin
+            Interface administrateur
         </a>
 
         <button (click)="logout()" class="bg-red-500 text-white p-4 rounded-lg">Se déconnecter</button>

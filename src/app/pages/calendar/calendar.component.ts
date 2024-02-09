@@ -9,6 +9,7 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { EventService } from '../../core/event.service';
 import { UserService } from '../../core/user.service';
 import { User } from '../../models/user.model';
+import { CompanyService } from '../../core/company.service';
 @Component({
   selector: 'app-calendar',
   standalone: true,
@@ -30,7 +31,8 @@ export class CalendarComponent {
 
   constructor(
     private eventService: EventService,
-    private userService: UserService
+    private userService: UserService,
+    private companyService: CompanyService
     ) {}
 
     ngOnInit(): void {
@@ -42,10 +44,16 @@ export class CalendarComponent {
       //     this.events = events;
       //   });
       // });
-      this.userId = this.userService.user.getId();
-      this.getUserEventsForMonth(this.userId!, this.month).then((events) => {
-        this.events = events;
+      this.userService.getCurrentUser().then((user: User) => {
+        this.userId = user.id;
+        this.getUserEventsForMonth(this.userId!, this.month).then((events) => {
+          this.events = events;
+          for (let event of this.events) {
+            event.realOrganizers = [];
+          }
+        });
       });
+      
 
       // this.getUserId().then((id) => {
       //   console.log(id);

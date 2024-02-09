@@ -26,11 +26,13 @@
         <ul class="mb-3 font-normal text-gray-700 dark:text-gray-400">
             <li *ngFor="let tag of event.tags">{{ tag.name }}</li>
         </ul>
-
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Organisateurs :</p>
-        <ul class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            <li *ngFor="let organizer of event.organizers">{{ organizer.name }}</li>
-        </ul>
+        <div class="flex items-center">
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Organisateurs :</p>
+            <ul class="ml-3 mb-3 font-normal text-gray-700 dark:text-gray-500 text-sm">
+                <li *ngFor="let organizer of event.realOrganizers">{{ organizer.name }}</li>
+            </ul>
+        </div>
+        
 
         <div class="flex justify-around">
             <a [routerLink]="['/admin/event/edit', event.id]" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">

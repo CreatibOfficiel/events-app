@@ -18,10 +18,9 @@
     </div>
     <div class="flex items-center">
       <div class="text-sm">
-        <p class="text-gray-900 leading-none font-bold mb-2"> Organisé par : </p>
-        <div *ngFor="let organizer of event.organizers">
-          <a [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 leading-none"> {{ organizer.name }}
-          </a>
+        <p class="text-gray-900 leading-none font-bold mb-2"> Organized by : </p>
+        <div *ngFor="let organizer of event.realOrganizers">
+          <a [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 leading-none"> {{ organizer.name }} </a>
         </div>
       </div>
       <div class="flex justify-end w-full">

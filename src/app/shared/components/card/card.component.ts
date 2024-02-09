@@ -7,6 +7,7 @@ import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {faHeart} from "@fortawesome/free-solid-svg-icons/faHeart";
 import {EventService} from "../../../core/event.service";
+import { CompanyService } from '../../../core/company.service';
 
 @Component({
   selector: 'app-card',
@@ -20,8 +21,11 @@ export class CardComponent {
 
   isMobile: boolean = false;
 
-  constructor(private responsive: BreakpointObserver,
-              private eventService: EventService) { }
+  constructor(
+    private responsive: BreakpointObserver,
+    private companyService: CompanyService,
+    private eventService: EventService
+    ) { }
 
   ngOnInit() {
     this.responsive.observe([
@@ -33,6 +37,21 @@ export class CardComponent {
         this.isMobile = false;
       }
     });
+
+    if (this.event !== null) {
+      this.event.organizers.forEach((organizer) => {
+        const match = organizer.match(/\/(\d+)$/);
+        if (match) {
+          let organizerId = parseInt(match[1], 10);
+          this.companyService.getCompanyById(organizerId).then((company) => {
+            if (company) {
+              this.event!.realOrganizers.push(company);
+            }
+          });
+        }
+        
+      });
+    }
   }
 
   followEvent(eventId: number) {

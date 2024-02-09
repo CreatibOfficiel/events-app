@@ -14,12 +14,11 @@
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ selectedEvent.name }}</h5>
         <p class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Le {{ selectedEvent.startDateTime | date }} à {{ selectedEvent.location }} </p>
         <p class="font-normal text-gray-700 dark:text-gray-400"> {{ selectedEvent.description }} </p>
-        <div class="flex flex-row justify-end mt-10 w-full">
+        <div class="flex flex-row justify-end items-center mt-10 w-full">
             <p class="text-gray-700 dark:text-gray-400">Organisé par : </p>
-            <a href="#" *ngFor="let organizer of selectedEvent.organizers" class="flex flex-col items-center">
-                <img class="w-10 h-10 rounded-full mr-4" src="{{ organizer.name }}" alt="Organizer picture">
-                <p class="text-gray-900 dark:text-gray-400 leading-none font-bold mb-2"> {{ organizer.name }} </p>
-            </a>
+            <div *ngFor="let organizer of selectedEvent.realOrganizers" class="flex flex-col">
+                <a [routerLink]="['/company/detail', organizer.id]" class="text-gray-900 dark:text-gray-400 leading-none"> {{ organizer.name }} </a>
+            </div>
         </div>
     </div>
 

@@ -33,6 +33,9 @@ export class FeedComponent {
       this.getLatestEvents().then((events) => {
         console.log(events);
         this.events = events;
+        for (let event of this.events) {
+          event.realOrganizers = [];
+        }
       });
     }
     

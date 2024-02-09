@@ -48,6 +48,9 @@ export class SearchComponent {
     } else {
       this.eventService.search(this.searchValue).then((events: Event[]) => {
         this.events = events;
+        for (let event of this.events) {
+          event.realOrganizers = [];
+        }
       });
       this.companyService.search(this.searchValue).then((companies: Company[]) => {
         this.companies = companies;
