@@ -29,9 +29,14 @@
                     <fa-icon [icon]="faCalendar" class="text-2xl text-white"></fa-icon>
                 </div>
 
-                <div class="flex flex-col">
+                <div *ngIf="!isCompany;" class="flex flex-col">
                     <h1 class="text-lg font-semibold">8</h1>
                     <span class="text-gray-400">participations</span>
+                </div>
+
+                <div *ngIf="isCompany;" class="flex flex-col">
+                    <h1 class="text-lg font-semibold">8</h1>
+                    <span class="text-gray-400">événements créés</span>
                 </div>
             </div>
 
@@ -40,20 +45,41 @@
                     <fa-icon [icon]="faPeopleGroup" class="text-2xl text-white"></fa-icon>
                 </div>
 
-                <div class="flex flex-col">
+                <div *ngIf="!isCompany;" class="flex flex-col">
                     <h1 class="text-lg font-semibold">10</h1>
                     <span class="text-gray-400">abonnements</span>
                 </div>
+
+                <div *ngIf="isCompany;" class="flex flex-col">
+                    <h1 class="text-lg font-semibold">10</h1>
+                    <span class="text-gray-400">abonnés</span>
+                </div>
             </div>
         </div>
+
+        <div class="flex justify-between items-center">
+            <div class="flex space-x-4 items-center">
+                <div class="flex items-center justify-center bg-gray-200 p-4 rounded w-14 h-14">
+                    <fa-icon [icon]="faCalendar" class="text-2xl text-blue-400"></fa-icon>
+                </div>
+
+                <span class="text-gray-500">Mes événements</span>
+            </div>
+
+            <a *ngIf="!isCompany" routerLink="#" class="text-blue-500">
+                <fa-icon [icon]="faChevronRight"></fa-icon>
+            </a>
+
+            <a *ngIf="isCompany" routerLink="/company/panel" class="text-blue-500">
+                <fa-icon [icon]="faChevronRight"></fa-icon>
+            </a>
+        </div>
+
+        <!-- line divider -->
+        <div class="w-full h-0.5 bg-gray-200"></div>
     </div>
 
     <div class="flex flex-col mt-60">
-        <a *ngIf="isCompany" routerLink="/company/panel"
-            class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-            Mode entreprise/BDE
-        </a>
-
         <a *ngIf="!isCompany" routerLink="/company/create"
             class="flex justify-center w-full text-yellow-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
             Créer une entreprise/BDE
